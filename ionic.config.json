@@ -1,0 +1,7 @@
+{
+  "name": "uSafety-App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
