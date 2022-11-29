@@ -1,9 +1,43 @@
 @import '/src/theme/variables.scss';
 
-.bem-vindo {
-    background-color: azul-claro2;
-}
 
-.containe {
-    background-color: $azul-claro;
+.bem-vindo {
+
+    .container {
+        background-color: $azul-marinho;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 90%;
+        height: fit-content;
+        border-radius: $border-radius-container;
+
+        .buttons {
+            padding: 2em;
+            position: relative;
+            width: 100%;
+
+            .button {
+                background-color: $branco;
+                color: $azul;
+                width: 100%;
+                border-radius: 1rem;
+                margin-bottom: 1em;
+            }
+        }
+
+        .title {
+            color: $branco;
+            text-align: center;
+            padding: 3em 2em 2em 2em;
+
+            h1 {
+                font-size: 2em;
+                margin: 0;
+            }
+        }
+    }
 }
