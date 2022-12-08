@@ -4,34 +4,32 @@
       <h1>Cadastro</h1>
     </div>
 
-    <form [formGroup]="formUsuario" (ngSubmit)="cadastrarUsuario()">
-      <ion-item>
-        <ion-label>Usuario</ion-label>
-        <ion-input type="text" formControllName="username" name="username"></ion-input>
-      </ion-item>
+    <form class="form" [formGroup]="formUsuario" (ngSubmit)="cadastrarUsuario()">
+      <div class="inputs">
+        <ion-item>
+          <ion-label>Usuario</ion-label>
+          <ion-input type="text" formControllName="username" name="username"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Email</ion-label>
-        <ion-input type="text" formControllName="email" name="email"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>Email</ion-label>
+          <ion-input type="text" formControllName="email" name="email"></ion-input>
+        </ion-item>
 
-      <span class="error ion-padding" *ngIf="podeValidar && form">
-        Email is required.
-      </span>
+        <ion-item>
+          <ion-label>Senha</ion-label>
+          <ion-input type="password" formControllName="senha" name="senha"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Senha</ion-label>
-        <ion-input type="password" formControllName="senha" name="senha"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Confirmar Senha</ion-label>
-        <ion-input type="password" formControllName="" name="confirmarSenha"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>Confirmar Senha</ion-label>
+          <ion-input type="password" formControllName="" name="confirmarSenha"></ion-input>
+        </ion-item>
+      </div>
 
       <ion-row>
         <ion-col>
-          <ion-button type="submit" expand="block">Submit</ion-button>
+          <ion-button class="button" type="submit" expand="block">Cadastrar</ion-button>
         </ion-col>
       </ion-row>
     </form>

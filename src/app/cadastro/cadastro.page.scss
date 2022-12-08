@@ -1,0 +1,62 @@
+@import '/src/theme/variables.scss';
+
+ion-content {
+
+    .cadastro {
+        background-color: $azul-marinho;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 90%;
+        height: fit-content;
+        border-radius: $border-radius-container;
+
+
+        .titulo {
+            color: $branco;
+            text-align: center;
+            padding: 3em 2em 2em 2em;
+
+            h1 {
+                font-size: 2em;
+                margin: 0;
+            }
+        }
+
+        .form {
+            ion-item::part(native) {
+                color: $branco;
+                background-color: transparent;
+            }
+
+            ion-item {
+                --highlight-height: 80vw;
+
+
+            }
+
+            .item-has-focus {
+                --highlight-color: transparent;
+                background-color: transparent;
+                --background: transparent;
+            }
+
+
+            .inputs {
+                width: 85vw;
+            }
+
+            .button {
+                background-color: $branco;
+                color: $azul;
+                width: 100%;
+                border-radius: 1rem;
+                margin-bottom: 1em;
+            }
+        }
+
+    }
+}
