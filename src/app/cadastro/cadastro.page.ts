@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiServiceService } from '../services/api-service.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -12,14 +13,18 @@ export class CadastroPage implements OnInit {
 
   formUsuario: FormGroup;
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    public api: ApiServiceService
+  ) { }
 
   ngOnInit() {
     this.formUsuario = this.formBuilder.group({
-      nome: ['', Validators.required, Validators.maxLength(30)],
-      email: ['', Validators.required, Validators.email],
-      senha: ['', Validators.required],
-      confirmarSenha: ['', Validators.required]
+
+      nome: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      senha: new FormControl('', Validators.required),
+      confirmarSenha: new FormControl('', Validators.required)
     });
   }
 
@@ -30,7 +35,16 @@ export class CadastroPage implements OnInit {
   cadastrarUsuario() {
     this.podeValidar = true;
 
-    console.log(this.formUsuario.valid);
+    if (this.formUsuario.valid) {
+      this.api.cadastrarUsuario(this.formUsuario.value).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
+    }
   }
-  
+
 }

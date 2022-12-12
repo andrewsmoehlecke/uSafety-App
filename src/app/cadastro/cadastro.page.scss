@@ -27,34 +27,25 @@ ion-content {
         }
 
         .form {
-            ion-item::part(native) {
-                color: $branco;
-                background-color: transparent;
-            }
-
-            ion-item {
-                --highlight-height: 80vw;
-
-
-            }
-
-            .item-has-focus {
-                --highlight-color: transparent;
-                background-color: transparent;
-                --background: transparent;
-            }
-
+            width: 85vw;
+            padding-left: 15px;
+            padding-bottom: 1em;
 
             .inputs {
-                width: 85vw;
+
+                ion-item::part(native) {
+                    color: $branco;
+                    background-color: transparent;
+                    caret-color: transparent;
+                }
             }
 
             .button {
-                background-color: $branco;
+                --background: #fff;
                 color: $azul;
                 width: 100%;
                 border-radius: 1rem;
-                margin-bottom: 1em;
+                margin: 1.5em 0;
             }
         }
 
