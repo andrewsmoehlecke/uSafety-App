@@ -37,6 +37,7 @@ export function provideSettings(storage: Storage) {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
+    Storage
   ],
   bootstrap: [AppComponent],
 })

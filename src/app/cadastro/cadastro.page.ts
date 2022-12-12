@@ -16,16 +16,17 @@ export class CadastroPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public api: ApiServiceService
-  ) { }
+  ) {
 
-  ngOnInit() {
     this.formUsuario = this.formBuilder.group({
-
       nome: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required]),
       senha: new FormControl('', Validators.required),
       confirmarSenha: new FormControl('', Validators.required)
     });
+  }
+
+  ngOnInit() {
   }
 
   get errosForm() {
@@ -33,6 +34,7 @@ export class CadastroPage implements OnInit {
   }
 
   cadastrarUsuario() {
+    console.log(this.formUsuario.value)
     this.podeValidar = true;
 
     if (this.formUsuario.valid) {

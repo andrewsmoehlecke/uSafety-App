@@ -4,7 +4,7 @@
       <h1>Cadastro</h1>
     </div>
 
-    <form class="form" [formGroup]="formUsuario" (ngSubmit)="cadastrarUsuario()">
+    <form class="form" [formGroup]="formUsuario">
       <div class="inputs">
         <ion-item>
           <ion-label position="floating">Usuario</ion-label>
@@ -31,7 +31,7 @@
 
       <ion-row>
         <ion-col>
-          <ion-button class="button" type="submit" expand="block">Cadastrar</ion-button>
+          <ion-button class="button" type="submit" expand="block" (click)="cadastrarUsuario()">Cadastrar</ion-button>
         </ion-col>
       </ion-row>
     </form>

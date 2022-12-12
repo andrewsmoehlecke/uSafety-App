@@ -35,8 +35,7 @@ export class ApiServiceService {
         }),
         catchError((err: HttpErrorResponse) => {
           return throwError(() => err)
-        }),
-        share()
+        })
       );
   }
 }
