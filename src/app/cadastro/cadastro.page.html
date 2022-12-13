@@ -4,34 +4,39 @@
       <h1>Cadastro</h1>
     </div>
 
-    <form class="form" [formGroup]="formUsuario">
+    <form class="form" (ngSubmit)="cadastrarUsuario()">
       <div class="inputs">
         <ion-item>
           <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="text" formControllName="username" name="username" [clearInput]="true"></ion-input>
+          <ion-input type="text" [(ngModel)]="formUsuario.username" name="username" [clearInput]="true"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Nome Completo</ion-label>
+          <ion-input type="text" [(ngModel)]="formUsuario.nome" name="nome" [clearInput]="true"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating">Email</ion-label>
-          <ion-input type="text" formControllName="email" name="email" [clearInput]="true"></ion-input>
-          <ion-note slot="error">Invalid email</ion-note>
+          <ion-input type="text" [(ngModel)]="formUsuario.email" name="email" [clearInput]="true"
+            [email]="true"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating">Senha</ion-label>
-          <ion-input type="password" formControllName="senha" name="senha" [clearInput]="true"></ion-input>
+          <ion-input type="password" [(ngModel)]="formUsuario.senha" name="senha" [clearInput]="true"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating">Confirmar Senha</ion-label>
-          <ion-input type="password" formControllName="confirmarSenha" name="confirmarSenha"
+          <ion-input type="password" [(ngModel)]="formUsuario.confirmarSenha" name="confirmarSenha"
             [clearInput]="true"></ion-input>
         </ion-item>
       </div>
 
       <ion-row>
         <ion-col>
-          <ion-button class="button" type="submit" expand="block" (click)="cadastrarUsuario()">Cadastrar</ion-button>
+          <ion-button class="button" type="submit" expand="block">Cadastrar</ion-button>
         </ion-col>
       </ion-row>
     </form>

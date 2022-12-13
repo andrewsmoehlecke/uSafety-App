@@ -40,15 +40,14 @@ export class ApiServiceService {
   }
 }
 
-interface Token {
+export interface Token {
   token: string;
   error: string;
 }
-
-interface Usuario {
+export interface Usuario {
   id: number;
+  username: string;
   nome: string;
   email: string;
   senha: string;
-  confirmarSenha: string;
 }
