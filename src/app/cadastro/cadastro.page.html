@@ -4,39 +4,51 @@
       <h1>Cadastro</h1>
     </div>
 
-    <form class="form" (ngSubmit)="cadastrarUsuario()">
-      <div class="inputs">
-        <ion-item>
-          <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="text" [(ngModel)]="formUsuario.username" name="username" [clearInput]="true"></ion-input>
-        </ion-item>
+    <form class="form" [formGroup]="formUsuario">
+      <ion-list>
 
-        <ion-item>
-          <ion-label position="floating">Nome Completo</ion-label>
-          <ion-input type="text" [(ngModel)]="formUsuario.nome" name="nome" [clearInput]="true"></ion-input>
-        </ion-item>
+        <div class="inputs">
+          <ion-item>
+            <ion-label position="floating">Usuario</ion-label>
+            <ion-input type="text" formControlName="username" [clearInput]="true" maxlength="10"></ion-input>
+            <!-- <span *ngIf="formUsuario.username == ''">Campo obrigatório!</span> -->
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input type="text" [(ngModel)]="formUsuario.email" name="email" [clearInput]="true"
-            [email]="true"></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nome Completo</ion-label>
+            <ion-input type="text" formControlName="nome" [clearInput]="true"></ion-input>
+            <!-- <span *ngIf="formUsuario.nome == ''">Campo obrigatório!</span> -->
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Senha</ion-label>
-          <ion-input type="password" [(ngModel)]="formUsuario.senha" name="senha" [clearInput]="true"></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" formControlName="email" [clearInput]="true"></ion-input>
+            <!-- <span *ngIf="formUsuario.email == ''">Campo obrigatório!</span> -->
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Confirmar Senha</ion-label>
-          <ion-input type="password" [(ngModel)]="formUsuario.confirmarSenha" name="confirmarSenha"
-            [clearInput]="true"></ion-input>
-        </ion-item>
-      </div>
+          <div formGroupName='senhas'>
+            <ion-item>
+              <ion-label position="floating">Senha</ion-label>
+              <ion-input type="password" formControlName="senha" [clearInput]="true"></ion-input>
+              <!-- <span *ngIf="formUsuario.senha == ''">Campo obrigatório!</span> -->
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Confirmar Senha</ion-label>
+              <ion-input type="password" formControlName="confirmarSenha" [clearInput]="true"></ion-input>
+              <!-- <span *ngIf="formUsuario.confirmarSenha == ''">Campo obrigatório!</span>
+              <span *ngIf="formUsuario.senha != formUsuario.confirmarSenha">
+                As senhas não coincidem
+              </span> -->
+            </ion-item>
+          </div>
+        </div>
+
+      </ion-list>
 
       <ion-row>
         <ion-col>
-          <ion-button class="button" type="submit" expand="block">Cadastrar</ion-button>
+          <ion-button (click)="cadastrarUsuario()" class="button" type="submit" expand="block">Cadastrar</ion-button>
         </ion-col>
       </ion-row>
     </form>

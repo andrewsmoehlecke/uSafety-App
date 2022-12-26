@@ -31,6 +31,10 @@ ion-content {
             padding-left: 15px;
             padding-bottom: 1em;
 
+            ion-list {
+                background: transparent;
+            }
+
             .inputs {
 
                 ion-item::part(native) {
