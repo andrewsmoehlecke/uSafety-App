@@ -10,36 +10,69 @@
         <div class="inputs">
           <ion-item>
             <ion-label position="floating">Usuario</ion-label>
-            <ion-input type="text" formControlName="username" [clearInput]="true" maxlength="10"></ion-input>
-            <!-- <span *ngIf="formUsuario.username == ''">Campo obrigatório!</span> -->
+            <ion-input type="text" formControlName="username" [clearInput]="true" maxlength="10"
+              placeholder="Digite seu username"></ion-input>
+
+            <ion-note slot="error" class="mensagemErro"
+              *ngIf='podeValidar && errorControl.username.errors?.required || errorControl.username.errors?.email'>
+              Campo obrigatório!
+            </ion-note>
           </ion-item>
 
           <ion-item>
             <ion-label position="floating">Nome Completo</ion-label>
-            <ion-input type="text" formControlName="nome" [clearInput]="true"></ion-input>
-            <!-- <span *ngIf="formUsuario.nome == ''">Campo obrigatório!</span> -->
+            <ion-input type="text" formControlName="nome" [clearInput]="true"
+              placeholder="Digite seu nome completo"></ion-input>
+
+            <ion-note slot="error" class="mensagemErro" no-lines
+              *ngIf='podeValidar && errorControl.nome.errors?.required'>
+              Campo obrigatório!
+            </ion-note>
           </ion-item>
 
           <ion-item>
             <ion-label position="floating">Email</ion-label>
-            <ion-input type="text" formControlName="email" [clearInput]="true"></ion-input>
-            <!-- <span *ngIf="formUsuario.email == ''">Campo obrigatório!</span> -->
+            <ion-input type="text" formControlName="email" [clearInput]="true"
+              placeholder="Digite seu email"></ion-input>
+
+            <ion-note slot="error" class="mensagemErro" no-lines
+              *ngIf='podeValidar && errorControl.email.errors?.required || errorControl.email.errors?.pattern'>
+              Email inválido!
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Data de Nascimento</ion-label>
+            <ion-input type="date" displayFormat="MM/DD/YYYY" formControlName="nascimento"
+              placeholder="Seu aniversário"></ion-input>
+
+            <ion-note slot="error" class="mensagemErro" no-lines
+              *ngIf='podeValidar && errorControl.nascimento.errors?.required'>
+              Campo obrigatório!
+            </ion-note>
           </ion-item>
 
           <div formGroupName='senhas'>
             <ion-item>
               <ion-label position="floating">Senha</ion-label>
-              <ion-input type="password" formControlName="senha" [clearInput]="true"></ion-input>
-              <!-- <span *ngIf="formUsuario.senha == ''">Campo obrigatório!</span> -->
+              <ion-input type="password" formControlName="senha" [clearInput]="true"
+                placeholder="Digite sua senha"></ion-input>
+
+              <ion-note slot="error" class="mensagemErro" no-lines
+                *ngIf='podeValidar && errorControlSenha.senha.errors?.required || errorControlSenha.senha.errors?.minlenth'>
+                A senha deve conter de 6-12 caracteres!
+              </ion-note>
             </ion-item>
 
             <ion-item>
               <ion-label position="floating">Confirmar Senha</ion-label>
-              <ion-input type="password" formControlName="confirmarSenha" [clearInput]="true"></ion-input>
-              <!-- <span *ngIf="formUsuario.confirmarSenha == ''">Campo obrigatório!</span>
-              <span *ngIf="formUsuario.senha != formUsuario.confirmarSenha">
-                As senhas não coincidem
-              </span> -->
+              <ion-input type="password" formControlName="confirmarSenha" [clearInput]="true"
+                placeholder="Confirme sua senha"></ion-input>
+
+              <ion-note slot="error" class="mensagemErro" no-lines
+                *ngIf='podeValidar && errorControlSenha.confirmarSenha.errors?.notEqual'>
+                As senhas não coincidem!
+              </ion-note>
             </ion-item>
           </div>
         </div>
@@ -52,5 +85,9 @@
         </ion-col>
       </ion-row>
     </form>
+
+    <div class="linkLogin">
+      <p>Já possui uma conta? <a [routerLink]="['/login']">Entre</a></p>
+    </div>
   </div>
 </ion-content>

@@ -29,7 +29,7 @@ ion-content {
         .form {
             width: 85vw;
             padding-left: 15px;
-            padding-bottom: 1em;
+            padding-bottom: 0.5em;
 
             ion-list {
                 background: transparent;
@@ -42,6 +42,11 @@ ion-content {
                     background-color: transparent;
                     caret-color: transparent;
                 }
+
+                .mensagemErro {
+                    color: $mensagem-erro;
+                    font-size: 0.9em;
+                }
             }
 
             .button {
@@ -50,6 +55,16 @@ ion-content {
                 width: 100%;
                 border-radius: 1rem;
                 margin: 1.5em 0;
+            }
+        }
+
+        .linkLogin {
+            color: $branco;
+            text-align: center;
+            font-size: 0.9em;
+
+            p {
+                margin: 0 0 1em 0;
             }
         }
 

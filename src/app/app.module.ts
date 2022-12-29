@@ -1,14 +1,15 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
+import { Storage } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Settings } from './services/settings';
-import { Storage } from '@ionic/storage';
+import { TopicosPage } from './topicos/topicos.page';
 
 export function provideSettings(storage: Storage) {
   /**
@@ -25,7 +26,10 @@ export function provideSettings(storage: Storage) {
   });
 }
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    TopicosPage
+  ],
   imports: [
     ReactiveFormsModule,
     HttpClientModule,
