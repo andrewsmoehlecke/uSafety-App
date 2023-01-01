@@ -4,13 +4,15 @@ import { from, Observable, throwError } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Injectable()
 export class InterceptorProvider implements HttpInterceptor {
 
   constructor(
-    public storage: Storage,
+    private storage: Storage,
     private router: Router,
+    private toastCtrl: ToastController,
   ) {
     this.createStorage();
   }
@@ -27,8 +29,12 @@ export class InterceptorProvider implements HttpInterceptor {
           let clonedReq = this.addToken(request, token);
           return next.handle(clonedReq).pipe(
             catchError(error => {
+              console.error("STATUS " + error.status)
               if (error.status == 440 || error.status == 401) {
                 console.warn("Token expirado!");
+
+                this.toastTokenExpirado();
+
                 this.storage.clear();
                 this.router.navigate(['/login'])
               }
@@ -61,5 +67,13 @@ export class InterceptorProvider implements HttpInterceptor {
       return clone;
 
     }
+  }
+
+  toastTokenExpirado() {
+    this.toastCtrl.create({
+      message: "Sessão expirada, faça login novamente!",
+      duration: 3000,
+      position: 'top',
+    }).then(toast => toast.present());
   }
 }

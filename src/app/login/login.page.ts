@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 import { ApiServiceService, Login } from '../services/api-service.service';
 
 @Component({
@@ -14,8 +15,10 @@ export class LoginPage implements OnInit {
   formLogin: FormGroup = new FormGroup({});
 
   constructor(
-    public api: ApiServiceService,
-    public formBuilder: FormBuilder
+    private api: ApiServiceService,
+    private formBuilder: FormBuilder,
+    private navCtrl: NavController,
+
   ) {
     this.formLogin = this.formBuilder.group({
       username: ['', Validators.required],
@@ -40,7 +43,7 @@ export class LoginPage implements OnInit {
 
       this.api.login(login).subscribe({
         next: (res) => {
-          console.log(res);
+          this.navCtrl.navigateForward("/tabs/topicos");
         },
         error: (err) => {
           console.error(err);

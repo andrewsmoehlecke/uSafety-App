@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiServiceService, Usuario } from '../services/api-service.service';
 import { PasswordValidator } from '../../util/validar-senha';
-import { ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cadastro',
@@ -17,9 +17,10 @@ export class CadastroPage implements OnInit {
   verificacaoSenha: FormGroup = new FormGroup({});
 
   constructor(
-    public api: ApiServiceService,
-    public toastController: ToastController,
-    public formBuilder: FormBuilder
+    private api: ApiServiceService,
+    private toastController: ToastController,
+    private formBuilder: FormBuilder,
+    private navCtrl: NavController,
   ) {
     this.verificacaoSenha = new FormGroup({
       senha: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]),
@@ -51,8 +52,6 @@ export class CadastroPage implements OnInit {
   cadastrarUsuario() {
     this.podeValidar = true;
 
-    console.log(this.errorControl)
-
     if (this.formUsuario.valid && this.verificacaoSenha.valid) {
       let usuario: Usuario = {
         id: 0,
@@ -65,7 +64,7 @@ export class CadastroPage implements OnInit {
 
       this.api.cadastrarUsuario(usuario).subscribe({
         next: (res) => {
-          console.log(res);
+          this.navCtrl.navigateForward("/tabs/topicos");
         },
         error: (err) => {
           console.error(err);
