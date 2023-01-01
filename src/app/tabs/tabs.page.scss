@@ -1,0 +1,19 @@
+@import '/src/theme/variables.scss';
+
+ion-tab-bar {
+    --color: #D6EBEE;
+    --background: #084770;
+}
+
+.toolbar {
+    color: #D6EBEE;
+    --background: #084770;
+}
+
+ion-menu::part(backdrop) {
+    background-color: $branco-azulado;
+}
+
+ion-menu::part(container) {
+    border-radius: 0 20px 20px 0;
+}

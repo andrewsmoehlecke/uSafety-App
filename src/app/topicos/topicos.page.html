@@ -1,3 +1,27 @@
-<ion-content>
+<!-- Cabeçalho da página -->
+<ion-header class="header">
+    <ion-toolbar class="toolbar">
+        <ion-title>Conteúdo</ion-title>
 
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="conteudo">
+    <ion-list>
+        <ion-item class="topico" *ngFor="let topico of listaConteudo">
+            <div *ngIf="topico.anonimo">
+                <div>
+                    <img [src]="topico.imagem">
+                </div>
+
+                <div>
+                    <h2>{{topico.titulo}}</h2>
+                    <p>{{topico.conteudo}}</p>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
 </ion-content>

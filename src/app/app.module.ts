@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,6 +8,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { InterceptorProvider } from './interceptor-ts/interceptor-ts';
 import { Settings } from './services/settings';
 import { TopicosPage } from './topicos/topicos.page';
 
@@ -41,6 +42,7 @@ export function provideSettings(storage: Storage) {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorProvider, multi: true },
     Storage
   ],
   bootstrap: [AppComponent],

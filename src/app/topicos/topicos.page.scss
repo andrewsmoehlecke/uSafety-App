@@ -1,0 +1,17 @@
+@import '/src/theme/variables.scss';
+
+.header {
+    .toolbar {
+        --color: #D6EBEE;
+        --background: #084770;
+    }
+}
+
+.conteudo {
+    padding-top: 1em;
+
+    .topico {
+        border: 1px solid black;
+        margin: 0 1em;
+    }
+}
