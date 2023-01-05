@@ -30,3 +30,11 @@
 ion-content {
     --ion-background-color: #D6EBEE;
 }
+
+/* Cor do cabeçalho*/
+.header {
+    .toolbar {
+        --color: #D6EBEE;
+        --background: #084770;
+    }
+}

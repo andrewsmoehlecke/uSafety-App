@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TopicoPage } from '../topico/topico.page';
 import { TopicosPage } from '../topicos/topicos.page';
 import { TabsPage } from './tabs.page';
 
@@ -11,6 +12,10 @@ const routes: Routes = [
       {
         path: 'topicos',
         component: TopicosPage
+      },
+      {
+        path: 'topico',
+        component: TopicoPage
       },
       {
         path: '',

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiServiceService, TopicoDto } from '../services/api-service.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-topicos',
@@ -10,12 +12,17 @@ export class TopicosPage implements OnInit {
 
   listaConteudo: TopicoDto[] = [];
 
+  private admin: boolean = false;
+
   constructor(
     private api: ApiServiceService,
+    private router: Router,
+    private storage: Storage,
   ) { }
 
   ngOnInit() {
     this.buscarConteudo();
+    this.verificarCargo();
   }
 
   buscarConteudo() {
@@ -30,4 +37,17 @@ export class TopicosPage implements OnInit {
     });
   }
 
+  abrirVisualizacaoCompleta(topico: TopicoDto) {
+    this.router.navigate(['/tabs/topico', { topico: JSON.stringify(topico) }]);
+  }
+
+  verificarCargo() {
+    this.storage.get('isAdmin').then((admin: boolean) => {
+      this.admin = admin;
+    });
+  }
+
+  adicionarConteudo() {
+
+  }
 }

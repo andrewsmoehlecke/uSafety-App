@@ -1,0 +1,29 @@
+<ion-header class="header">
+  <ion-toolbar class="toolbar">
+    <ion-title>Conteúdo</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="conteudo">
+  <div class="margin-top">
+    <ion-item class="topico">
+      <div class="padding" *ngIf="topico.anonimo">
+        <div class="imagem">
+          <img [src]="topico.imagem">
+        </div>
+
+        <div class="linha-divisoria"></div>
+
+        <div class="texto">
+          <h2>{{topico.titulo}}</h2>
+
+          <p>{{ topico.conteudo }}</p>
+        </div>
+      </div>
+    </ion-item>
+  </div>
+</ion-content>

@@ -1,11 +1,7 @@
 @import '/src/theme/variables.scss';
 
-.btnAddConteudo {
-    --background: transparent;
-}
-
 .conteudo {
-    .lista {
+    .margin-top {
         margin-top: 1em;
 
         .topico {
@@ -17,12 +13,6 @@
 
             .padding {
                 padding: 1em 0;
-                width: 100%;
-
-                .imagem {
-                    width: 100%;
-                    text-align: center;
-                }
 
                 .linha-divisoria {
                     border-bottom: 1px solid $azul;
@@ -30,14 +20,21 @@
                     width: 100%;
                 }
 
-                .titulo {
-                    text-align: center;
+                .texto {
+                    width: 100%;
 
                     h2 {
+                        text-align: center;
                         margin: 0;
+                    }
+
+                    p {
+                        text-align: justify;
+                        width: 97%;
                     }
                 }
             }
         }
+
     }
 }

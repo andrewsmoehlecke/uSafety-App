@@ -52,6 +52,8 @@ export class ApiServiceService {
             console.log("info token:" + tokenInfo.exp);
             this.storage.set('token_expiration', tokenInfo.exp);
 
+            this.storage.set('isAdmin', res.admin);
+
             return res.token;
           } else {
             return res.error;
@@ -65,6 +67,18 @@ export class ApiServiceService {
 
   buscarConteudo() {
     return this.http.get<TopicoDto[]>(this.url + "/topico/buscarTodoConteudo")
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
+
+  listarUsuarios() {
+    return this.http.get<Usuario[]>(this.url + "/usuario/listarUsuarios")
       .pipe(
         map((res: any) => {
           return res;
@@ -88,6 +102,7 @@ export interface TopicoDto {
   autor: Usuario;
 }
 export interface Token {
+  admin: boolean;
   token: string;
   error: string;
 }

@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InterceptorProvider } from './interceptor-ts/interceptor-ts';
 import { Settings } from './services/settings';
+import { TopicoPage } from './topico/topico.page';
 import { TopicosPage } from './topicos/topicos.page';
 
 export function provideSettings(storage: Storage) {
@@ -29,7 +30,8 @@ export function provideSettings(storage: Storage) {
 @NgModule({
   declarations: [
     AppComponent,
-    TopicosPage
+    TopicosPage,
+    TopicoPage,
   ],
   imports: [
     ReactiveFormsModule,
