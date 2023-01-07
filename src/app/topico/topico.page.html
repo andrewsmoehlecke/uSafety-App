@@ -12,6 +12,16 @@
   <div class="margin-top">
     <ion-item class="topico">
       <div class="padding" *ngIf="topico.anonimo">
+
+        <div class="avatar">
+          <ion-chip class="ion-chip">
+            <ion-avatar class="ion-avatar">
+              <img alt="Foto de perfil do usuário" [src]="topico.autor.fotoPerfil" />
+            </ion-avatar>
+            <ion-label class="nomeAutor">{{ topico.autor.nomeCompleto }}</ion-label>
+          </ion-chip>
+        </div>
+
         <div class="imagem">
           <img [src]="topico.imagem">
         </div>
@@ -22,6 +32,10 @@
           <h2>{{topico.titulo}}</h2>
 
           <p>{{ topico.conteudo }}</p>
+        </div>
+
+        <div class="dataPublicacao">
+          <p>{{ topico.horaPublicacao | date: 'short' }}</p>
         </div>
       </div>
     </ion-item>

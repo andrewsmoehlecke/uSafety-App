@@ -1,6 +1,6 @@
 @import '/src/theme/variables.scss';
 
-.btnAddDuvida {
+.btnAddDiscussao {
     --background: transparent;
 }
 
@@ -8,7 +8,7 @@
     .lista {
         margin-top: 1em;
 
-        .duvida {
+        .discussao {
             color: $azul;
             --background: #FDFDFD;
             border-radius: 1em;

@@ -66,7 +66,7 @@ export class ApiServiceService {
   }
 
   buscarConteudo() {
-    return this.http.get<TopicoDto[]>(this.url + "/topico/buscarTodoConteudo")
+    return this.http.get<TopicoDto[]>(this.url + "/topico/buscarConteudos")
       .pipe(
         map((res: any) => {
           return res;
@@ -79,6 +79,42 @@ export class ApiServiceService {
 
   listarUsuarios() {
     return this.http.get<Usuario[]>(this.url + "/usuario/listarUsuarios")
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
+
+  buscarDuvidas() {
+    return this.http.get<TopicoDto[]>(this.url + "/topico/buscarDuvidas")
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
+
+  adicionarDuvida(duvida: TopicoDto) {
+    return this.http.post<TopicoDto>(this.url + "/topico/criarDuvida", duvida)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
+
+  buscarDiscussoes() {
+    return this.http.get<TopicoDto[]>(this.url + "/topico/buscarDiscussoes")
       .pipe(
         map((res: any) => {
           return res;
@@ -117,4 +153,5 @@ export interface Usuario {
   email: string;
   dataNascimento: string;
   senha: string;
+  fotoPerfil?: string;
 }

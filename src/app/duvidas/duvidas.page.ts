@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiServiceService, TopicoDto } from '../services/api-service.service';
 
 @Component({
   selector: 'app-duvidas',
@@ -7,9 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DuvidasPage implements OnInit {
 
-  constructor() { }
+  duvidas: TopicoDto[] = [];
+
+  constructor(
+    private api: ApiServiceService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.buscarDuvidas();
+  }
+
+  buscarDuvidas() {
+    this.api.buscarDuvidas().subscribe({
+      next: (res: TopicoDto[]) => {
+        console.log(res);
+        this.duvidas = res;
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    });
+  }
+
+  adicionarDuvida() {
+    this.router.navigate(['/tabs/criar-topico', { topico: "duvida" }]);
+  }
+
+  abrirVisualizacaoCompleta(duvida: TopicoDto) {
+    this.router.navigate(['/tabs/duvida', { duvida: JSON.stringify(duvida) }]);
   }
 
 }

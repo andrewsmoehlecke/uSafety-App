@@ -8,6 +8,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DiscussaoPage } from './discussao/discussao.page';
+import { DiscussoesPage } from './discussoes/discussoes.page';
+import { DuvidaPage } from './duvida/duvida.page';
+import { DuvidasPage } from './duvidas/duvidas.page';
 import { InterceptorProvider } from './interceptor-ts/interceptor-ts';
 import { Settings } from './services/settings';
 import { TopicoPage } from './topico/topico.page';
@@ -32,6 +36,10 @@ export function provideSettings(storage: Storage) {
     AppComponent,
     TopicosPage,
     TopicoPage,
+    DuvidasPage,
+    DuvidaPage,
+    DiscussaoPage,
+    DiscussoesPage,
   ],
   imports: [
     ReactiveFormsModule,

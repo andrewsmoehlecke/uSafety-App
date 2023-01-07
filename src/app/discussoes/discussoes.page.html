@@ -1,13 +1,13 @@
 <ion-header class="header">
   <ion-toolbar class="toolbar">
-    <ion-title>Dúvidas</ion-title>
+    <ion-title>Discussões</ion-title>
 
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button fill="solid" class="btnAddDuvida" (click)="adicionarDuvida()">
+      <ion-button fill="solid" class="btnAddDiscussao" (click)="adicionarDiscussao()">
         <ion-icon slot="icon-only" name="add-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -16,16 +16,16 @@
 
 <ion-content class="conteudo">
   <ion-list class="lista">
-    <ion-item class="duvida" *ngFor="let duvida of duvidas">
-      <div class="padding" *ngIf="duvida.anonimo" (click)="abrirVisualizacaoCompleta(duvida)">
+    <ion-item class="discussao" *ngFor="let discussao of discussoes">
+      <div class="padding" *ngIf="discussao.anonimo" (click)="abrirVisualizacaoCompleta(discussao)">
         <div class="imagem">
-          <img [src]="duvida.imagem">
+          <img [src]="discussao.imagem">
         </div>
 
         <div class="linha-divisoria"></div>
 
         <div class="titulo">
-          <h2>{{duvida.titulo}}</h2>
+          <h2>{{discussao.titulo}}</h2>
         </div>
       </div>
     </ion-item>
