@@ -1,0 +1,49 @@
+<ion-header class="header">
+  <ion-toolbar class="toolbar">
+    <ion-title class="titulo">Criar Tópico</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="conteudo">
+  <form class="form" [formGroup]="form">
+    <ion-list>
+      <ion-item class="imagem">
+        <img *ngIf="form.value.imagem == ''" src="../../assets/img/no-image.png" (click)="selecionarImagem()">
+
+        <img *ngIf="form.value.imagem != ''" [src]="form.value.imagem" (click)="selecionarImagem()">
+
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Assunto</ion-label>
+        <ion-input type="text" formControlName="titulo" [clearInput]="true" maxlength="60"
+          placeholder="Digite o assunto"></ion-input>
+
+        <ion-note slot="error" class="mensagemErro" *ngIf='podeValidar && errorControl.titulo.errors?.required'>
+          Campo obrigatório!
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Conteúdo</ion-label>
+        <ion-textarea maxlength="1024" formControlName="conteudo" placeholder="Digite o conteúdo"></ion-textarea>
+
+        <ion-note slot="error" class="mensagemErro" no-lines
+          *ngIf='podeValidar && errorControl.conteudo.errors?.required'>
+          Campo obrigatório!
+        </ion-note>
+      </ion-item>
+    </ion-list>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="criarTopico()" class="botao" type="submit" expand="block">Criar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

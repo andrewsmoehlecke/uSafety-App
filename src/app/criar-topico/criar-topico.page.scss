@@ -1,0 +1,47 @@
+@import '/src/theme/variables.scss';
+
+.conteudo {
+
+    .form {
+        text-align: center;
+        margin: 2em 1em;
+        position: relative;
+
+        ion-label,
+        ion-input,
+        ion-textarea {
+            color: $azul;
+        }
+
+        .imagem {
+            max-width: 60vw;
+            max-height: 60vh;
+            margin: 0 auto;
+            text-align: center;
+
+            img {
+                border-radius: 1em;
+            }
+
+            ion-icon {
+                position: absolute;
+                bottom: 0;
+                right: 0.5em;
+                background: $azul;
+                color: $branco;
+                padding: 0.3em;
+                border-radius: 1em;
+                font-size: 1.8em;
+            }
+        }
+
+        .botao {
+            --background: #02457A;
+            color: $branco;
+            width: 100%;
+            border-radius: 1rem;
+            margin-bottom: 1em;
+        }
+
+    }
+}

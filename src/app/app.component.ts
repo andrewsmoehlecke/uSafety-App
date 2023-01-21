@@ -8,7 +8,7 @@ import { Storage } from '@ionic/storage';
 })
 export class AppComponent {
   constructor(
-    public storage: Storage,
+    public storage: Storage
   ) {
   }
 

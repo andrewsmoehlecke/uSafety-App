@@ -33,7 +33,7 @@ export class DuvidasPage implements OnInit {
   }
 
   adicionarDuvida() {
-    this.router.navigate(['/tabs/criar-topico', { topico: "duvida" }]);
+    this.router.navigate(['/tabs/criar-topico', { tipo: "dúvida" }]);
   }
 
   abrirVisualizacaoCompleta(duvida: TopicoDto) {

@@ -1,18 +1,25 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
 import { Storage } from '@ionic/storage';
+import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CriarTopicoPage } from './criar-topico/criar-topico.page';
 import { DiscussaoPage } from './discussao/discussao.page';
 import { DiscussoesPage } from './discussoes/discussoes.page';
 import { DuvidaPage } from './duvida/duvida.page';
 import { DuvidasPage } from './duvidas/duvidas.page';
 import { InterceptorProvider } from './interceptor-ts/interceptor-ts';
+import { MeuPerfilPage } from './meu-perfil/meu-perfil.page';
 import { Settings } from './services/settings';
 import { TopicoPage } from './topico/topico.page';
 import { TopicosPage } from './topicos/topicos.page';
@@ -40,20 +47,26 @@ export function provideSettings(storage: Storage) {
     DuvidaPage,
     DiscussaoPage,
     DiscussoesPage,
+    CriarTopicoPage,
+    MeuPerfilPage,
   ],
   imports: [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
   ],
-
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorProvider, multi: true },
-    Storage
+    Storage,
+    ImagePicker,
   ],
   bootstrap: [AppComponent],
 })

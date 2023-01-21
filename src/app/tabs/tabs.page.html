@@ -5,7 +5,13 @@
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding menu-content">This is the menu content.</ion-content>
+  <ion-content class="ion-padding menu-content">
+    <ion-list>
+      <ion-item>
+        <ion-label class="label" [routerLink]="['/tabs/meu-perfil']">- Perfil</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-menu>
 
 <!-- Para abrir o menu com rolagem horizontal -->

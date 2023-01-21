@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CriarTopicoPage } from '../criar-topico/criar-topico.page';
 import { DiscussaoPage } from '../discussao/discussao.page';
 import { DiscussoesPage } from '../discussoes/discussoes.page';
 import { DuvidaPage } from '../duvida/duvida.page';
 import { DuvidasPage } from '../duvidas/duvidas.page';
+import { MeuPerfilPage } from '../meu-perfil/meu-perfil.page';
 import { TopicoPage } from '../topico/topico.page';
 import { TopicosPage } from '../topicos/topicos.page';
 import { TabsPage } from './tabs.page';
@@ -36,6 +38,14 @@ const routes: Routes = [
       {
         path: 'discussao',
         component: DiscussaoPage
+      },
+      {
+        path: 'criar-topico',
+        component: CriarTopicoPage
+      },
+      {
+        path: 'meu-perfil',
+        component: MeuPerfilPage
       },
       {
         path: '',

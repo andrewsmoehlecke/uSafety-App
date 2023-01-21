@@ -12,3 +12,10 @@ ion-menu::part(backdrop) {
 ion-menu::part(container) {
     border-radius: 0 20px 20px 0;
 }
+
+.menu-content {
+    .label {
+        color: $azul;
+        font-size: 14pt;
+    }
+}

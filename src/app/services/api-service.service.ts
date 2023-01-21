@@ -1,7 +1,7 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { catchError, map, Observable, of, share, throwError } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -115,6 +115,18 @@ export class ApiServiceService {
 
   buscarDiscussoes() {
     return this.http.get<TopicoDto[]>(this.url + "/topico/buscarDiscussoes")
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
+
+  criarTopico(topico: TopicoDto, tipo: string) {
+    return this.http.post<any>(this.url + "/topico/" + tipo, topico)
       .pipe(
         map((res: any) => {
           return res;
