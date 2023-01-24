@@ -12,7 +12,7 @@ export class TopicosPage implements OnInit {
 
   listaConteudo: TopicoDto[] = [];
 
-  private admin: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(
     private api: ApiServiceService,
@@ -43,7 +43,7 @@ export class TopicosPage implements OnInit {
 
   verificarCargo() {
     this.storage.get('isAdmin').then((admin: boolean) => {
-      this.admin = admin;
+      this.isAdmin = admin;
     });
   }
 

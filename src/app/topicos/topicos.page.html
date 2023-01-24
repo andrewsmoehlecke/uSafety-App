@@ -6,7 +6,7 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
 
-        <ion-buttons slot="end">
+        <ion-buttons slot="end" *ngIf="isAdmin">
             <ion-button fill="solid" class="btnAddConteudo" (click)="adicionarConteudo()">
                 <ion-icon slot="icon-only" name="add-outline"></ion-icon>
             </ion-button>

@@ -11,19 +11,28 @@
 </ion-header>
 
 <ion-content class="conteudo">
-  <!-- <form class="form" [formGroup]="formUsuario">
+  <form class="form" [formGroup]="formUsuario">
     <ion-list>
 
       <div class="inputs">
+
+        <ion-item class="imagem">
+          <ion-avatar>
+            <img *ngIf="formUsuario.value.fotoPerfil == ''" src="../../assets/img/avatar.svg"
+              (click)="selecionarImagem()">
+          </ion-avatar>
+
+          <ion-avatar>
+            <img *ngIf="formUsuario.value.fotoPerfil != ''" [src]="formUsuario.value.fotoPerfil"
+              (click)="selecionarImagem()">
+          </ion-avatar>
+
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-item>
+
         <ion-item>
           <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="text" formControlName="username" [clearInput]="true" maxlength="10"
-            placeholder="Digite seu username"></ion-input>
-
-          <ion-note slot="error" class="mensagemErro"
-            *ngIf='podeValidar && errorControl.username.errors?.required || errorControl.username.errors?.email'>
-            Campo obrigatório!
-          </ion-note>
+          <ion-input type="text" formControlName="username" [disabled]="true"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -39,8 +48,7 @@
 
         <ion-item>
           <ion-label position="floating">Email</ion-label>
-          <ion-input type="text" formControlName="email" [clearInput]="true"
-            placeholder="Digite seu email"></ion-input>
+          <ion-input type="text" formControlName="email" [clearInput]="true" placeholder="Digite seu email"></ion-input>
 
           <ion-note slot="error" class="mensagemErro" no-lines
             *ngIf='podeValidar && errorControl.email.errors?.required || errorControl.email.errors?.pattern'>
@@ -64,8 +72,8 @@
 
     <ion-row>
       <ion-col>
-        <ion-button (click)="cadastrarUsuario()" class="button" type="submit" expand="block">Cadastrar</ion-button>
+        <ion-button (click)="salvarPerfil()" class="button" type="submit" expand="block">Salvar</ion-button>
       </ion-col>
     </ion-row>
-  </form> -->
+  </form>
 </ion-content>

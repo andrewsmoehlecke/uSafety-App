@@ -136,6 +136,18 @@ export class ApiServiceService {
         })
       );
   }
+
+  buscarUsuarioLogado() {
+    return this.http.get<Usuario>(this.url + "/usuario/buscarUsuarioLogado")
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
 }
 
 
