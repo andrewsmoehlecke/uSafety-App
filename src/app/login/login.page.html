@@ -1,38 +1,43 @@
 <ion-content>
-  <form class="form" [formGroup]="formLogin">
-    <ion-list>
+  <div class="login">
+    <div class="titulo">
+      <h1>Login</h1>
+    </div>
 
-      <div class="inputs">
-        <ion-item>
-          <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="text" formControlName="username" [clearInput]="true" maxlength="10"
-            placeholder="Digite seu username"></ion-input>
+    <form class="form" [formGroup]="formLogin">
+      <ion-list>
+        <div class="inputs">
+          <ion-item>
+            <ion-label position="floating">Usuario</ion-label>
+            <ion-input type="text" formControlName="username" [clearInput]="true" maxlength="10"
+              placeholder="Digite seu username"></ion-input>
 
-          <ion-note slot="error" class="mensagemErro" *ngIf='podeValidar && errorControl.username.errors?.required'>
-            Campo obrigatório!
-          </ion-note>
-        </ion-item>
+            <ion-note slot="error" class="mensagemErro" *ngIf='podeValidar && errorControl.username.errors?.required'>
+              Campo obrigatório!
+            </ion-note>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Senha</ion-label>
-          <ion-input type="password" formControlName="senha" [clearInput]="true"
-            placeholder="Digite sua senha"></ion-input>
+          <ion-item>
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input type="password" formControlName="senha" [clearInput]="true"
+              placeholder="Digite sua senha"></ion-input>
 
-          <ion-note slot="error" class="mensagemErro" *ngIf='podeValidar && errorControl.senha.errors?.required'>
-            Campo obrigatório!
-          </ion-note>
-        </ion-item>
-      </div>
-    </ion-list>
+            <ion-note slot="error" class="mensagemErro" *ngIf='podeValidar && errorControl.senha.errors?.required'>
+              Campo obrigatório!
+            </ion-note>
+          </ion-item>
+        </div>
+      </ion-list>
 
-    <ion-row>
-      <ion-col>
-        <ion-button (click)="login()" class="button" type="submit" expand="block">Entrar</ion-button>
-      </ion-col>
-    </ion-row>
-  </form>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="login()" class="button" type="submit" expand="block">Entrar</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
 
-  <div class="linkCadastro">
-    <p>Não possui uma conta? <a [routerLink]="['/cadastro']">Crie</a></p>
+    <div class="linkCadastrar">
+      <p>Não possui uma conta? <a [routerLink]="['/cadastro']">Crie</a></p>
+    </div>
   </div>
 </ion-content>

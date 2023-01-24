@@ -1,0 +1,72 @@
+@import '/src/theme/variables.scss';
+
+ion-content {
+
+    .login {
+        background-color: $azul-marinho;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 90%;
+        height: fit-content;
+        border-radius: $border-radius-container;
+
+
+        .titulo {
+            color: $branco;
+            text-align: center;
+            padding: 3em 2em 2em 2em;
+
+            h1 {
+                font-size: 2em;
+                margin: 0;
+            }
+        }
+
+        .form {
+            width: 85vw;
+            padding-left: 15px;
+            padding-bottom: 0.5em;
+
+            ion-list {
+                background: transparent;
+            }
+
+            .inputs {
+
+                ion-item::part(native) {
+                    color: $branco;
+                    background-color: transparent;
+                    caret-color: transparent;
+                }
+
+                .mensagemErro {
+                    color: $mensagem-erro;
+                    font-size: 0.9em;
+                }
+            }
+
+            .button {
+                --background: #fff;
+                color: $azul;
+                width: 100%;
+                border-radius: 1rem;
+                margin: 1.5em 0;
+            }
+        }
+
+        .linkCadastrar {
+            color: $branco;
+            text-align: center;
+            font-size: 0.9em;
+
+            p {
+                margin: 0 0 1em 0;
+            }
+        }
+
+    }
+}

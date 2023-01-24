@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -7,7 +9,16 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  titulo: string = "";
+  constructor(
+    private storage: Storage,
+    private navCtrl: NavController,
+  ) { }
 
-  constructor() { }
+  desconectarConta() {
+    this.storage.clear().then(() => {
+      console.debug('Storage limpo');
+      // Redirecionando pra página de bem-vindo
+      this.navCtrl.navigateRoot('');
+    });
+  }
 }

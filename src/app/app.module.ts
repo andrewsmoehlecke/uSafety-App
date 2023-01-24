@@ -21,6 +21,7 @@ import { DuvidasPage } from './duvidas/duvidas.page';
 import { InterceptorProvider } from './interceptor-ts/interceptor-ts';
 import { MeuPerfilPage } from './meu-perfil/meu-perfil.page';
 import { Settings } from './services/settings';
+import { TabsPage } from './tabs/tabs.page';
 import { TopicoPage } from './topico/topico.page';
 import { TopicosPage } from './topicos/topicos.page';
 
@@ -49,6 +50,7 @@ export function provideSettings(storage: Storage) {
     DiscussoesPage,
     CriarTopicoPage,
     MeuPerfilPage,
+    TabsPage,
   ],
   imports: [
     ReactiveFormsModule,

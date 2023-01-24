@@ -18,4 +18,8 @@ ion-menu::part(container) {
         color: $azul;
         font-size: 14pt;
     }
+
+    .desconectar {
+        color: $mensagem-erro;
+    }
 }
