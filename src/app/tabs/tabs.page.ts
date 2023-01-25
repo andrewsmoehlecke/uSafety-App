@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -12,13 +12,34 @@ export class TabsPage {
   constructor(
     private storage: Storage,
     private navCtrl: NavController,
+    private alertController: AlertController
   ) { }
 
-  desconectarConta() {
-    this.storage.clear().then(() => {
-      console.debug('Storage limpo');
-      // Redirecionando pra página de bem-vindo
-      this.navCtrl.navigateRoot('');
+  async desconectarContaAlert() {
+    let alert = await this.alertController.create({
+      header: "Tem certeza que deseja desconectar-se?",
+
+      backdropDismiss: true,
+      cssClass: "alerta-desconectar-conta",
+      buttons: [
+        {
+          text: "Sim",
+          cssClass: "btn-sim",
+
+          handler: () => {
+            this.storage.clear().then(() => {
+              // Redirecionando pra página de bem-vindo
+              this.navCtrl.navigateRoot('');
+            });
+          }
+        },
+        {
+          text: "Cancelar",
+          cssClass: "btn-cancelar",
+        }
+      ]
     });
+
+    await alert.present();
   }
 }

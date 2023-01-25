@@ -24,6 +24,7 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import "theme/variables.scss";
 
 
 /* Cor de fundo do aplicativo */
@@ -36,5 +37,16 @@ ion-content {
     .toolbar {
         --color: #D6EBEE;
         --background: #084770;
+    }
+}
+
+.alerta-desconectar-conta,
+.alerta-excluir-duvida {
+    .btn-sim {
+        color: $mensagem-sucesso;
+    }
+
+    .btn-cancelar {
+        color: $mensagem-erro;
     }
 }

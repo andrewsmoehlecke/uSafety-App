@@ -13,13 +13,22 @@
     <ion-item class="duvida">
       <div class="padding" *ngIf="duvida.anonimo">
 
-        <div class="avatar">
-          <ion-chip class="ion-chip">
-            <ion-avatar class="ion-avatar">
-              <img class="fotoPerfil" alt="Foto de perfil do usuário" [src]="duvida.autor.fotoPerfil" />
-            </ion-avatar>
-            <ion-label class="nomeAutor">{{ duvida.autor.nomeCompleto }}</ion-label>
-          </ion-chip>
+        <div class="header">
+          <div class="avatar">
+            <ion-chip class="ion-chip">
+              <ion-avatar class="ion-avatar">
+                <img class="fotoPerfil" alt="Foto de perfil do usuário" [src]="duvida.autor.fotoPerfil" />
+              </ion-avatar>
+              <ion-label class="nomeAutor">{{ duvida.autor.nomeCompleto }}</ion-label>
+            </ion-chip>
+          </div>
+
+          <div class="btn-excluir" *ngIf="podeExcluir">
+            {{podeExcluir}}
+            <ion-button class="btn-excluir" (click)="excluirDuvidaAlert()">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </div>
         </div>
 
         <div class="imagem">

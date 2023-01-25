@@ -54,6 +54,8 @@ export class ApiServiceService {
 
             this.storage.set('isAdmin', res.admin);
 
+            this.storage.set('username', res.username);
+
             return res.token;
           } else {
             return res.error;
@@ -148,6 +150,18 @@ export class ApiServiceService {
         })
       );
   }
+
+  adminExcluirTopico(id: number) {
+    return this.http.delete<any>(this.url + "/topico/excluir/" + id)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
 }
 
 
@@ -165,6 +179,7 @@ export interface Token {
   admin: boolean;
   token: string;
   error: string;
+  username: string;
 }
 export interface Login {
   username: string;

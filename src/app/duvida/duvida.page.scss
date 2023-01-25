@@ -14,26 +14,36 @@
             .padding {
                 padding: 1em 0;
 
-                .avatar {
-                    text-align: start;
-                    height: 4em;
-
-                    .ion-chip {
-                        background-color: transparent;
-                        margin-bottom: 0.5em;
-                        color: $azul;
+                .header {
+                    .avatar {
+                        text-align: start;
                         height: 4em;
 
-                        .ion-avatar {
-                            width: 2.8em;
-                            height: 2.8em;
-                        }
+                        .ion-chip {
+                            background-color: transparent;
+                            margin-bottom: 0.5em;
+                            color: $azul;
+                            height: 4em;
 
-                        .nomeAutor {
-                            margin: 0;
-                            font-size: 12pt;
-                            overflow: hidden;
+                            .ion-avatar {
+                                width: 2.8em;
+                                height: 2.8em;
+                            }
+
+                            .nomeAutor {
+                                margin: 0;
+                                font-size: 12pt;
+                                overflow: hidden;
+                            }
                         }
+                    }
+
+                    .btn-excluir {
+                        color: $mensagem-erro;
+                        font-size: 1.5em;
+                        margin: 0;
+                        padding: 0;
+                        text-align: end;
                     }
                 }
 
