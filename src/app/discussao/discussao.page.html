@@ -11,15 +11,23 @@
 <ion-content class="conteudo">
   <div class="margin-top">
     <ion-item class="discussao">
-      <div class="padding" *ngIf="discussao.anonimo">
+      <div class="padding">
 
-        <div class="avatar">
-          <ion-chip class="ion-chip">
-            <ion-avatar class="ion-avatar">
-              <img class="fotoPerfil" alt="Foto de perfil do usuário" [src]="discussao.autor.fotoPerfil" />
-            </ion-avatar>
-            <ion-label class="nomeAutor">{{ discussao.autor.nomeCompleto }}</ion-label>
-          </ion-chip>
+        <div class="header">
+          <div class="avatar">
+            <ion-chip class="ion-chip">
+              <ion-avatar class="ion-avatar">
+                <img class="fotoPerfil" alt="Foto de perfil do usuário" [src]="discussao.autor.fotoPerfil" />
+              </ion-avatar>
+              <ion-label class="nomeAutor">{{ discussao.autor.nomeCompleto }}</ion-label>
+            </ion-chip>
+          </div>
+
+          <div class="excluir-topico" *ngIf="podeExcluir">
+            <ion-button class="btn-excluir" (click)="excluirDiscussaoAlert()">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </div>
         </div>
 
         <div class="imagem">

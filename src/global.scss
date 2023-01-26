@@ -41,7 +41,9 @@ ion-content {
 }
 
 .alerta-desconectar-conta,
-.alerta-excluir-duvida {
+.alerta-excluir-duvida,
+.alerta-excluir-discussao,
+.alerta-excluir-topico {
     .btn-sim {
         color: $mensagem-sucesso;
     }
@@ -49,4 +51,8 @@ ion-content {
     .btn-cancelar {
         color: $mensagem-erro;
     }
+}
+
+button {
+    box-shadow: none;
 }

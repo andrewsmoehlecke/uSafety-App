@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AlertController } from '@ionic/angular';
-import { TopicoDto } from '../services/api-service.service';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
+import { ApiServiceService, TopicoDto } from '../services/api-service.service';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -19,6 +19,9 @@ export class DuvidaPage implements OnInit {
     private route: ActivatedRoute,
     private alertController: AlertController,
     private storage: Storage,
+    private api: ApiServiceService,
+    private toastCtrl: ToastController,
+    private navCtrl: NavController
   ) {
     this.duvida = JSON.parse(this.route.snapshot.paramMap.get('duvida') || '{}');
     this.verificarSePodeExcluir();
@@ -37,6 +40,7 @@ export class DuvidaPage implements OnInit {
           text: "Sim",
           cssClass: "btn-sim",
           handler: () => {
+            this.adminExcluirTopico(this.duvida.id)
           }
         },
         {
@@ -47,12 +51,9 @@ export class DuvidaPage implements OnInit {
     }).then(alert => {
       alert.present();
     });
-
-
   }
 
   verificarSePodeExcluir() {
-    console.log("Verificando se pode excluir...")
     this.storage.get('username').then((username: string) => {
       if (username == this.duvida.autor.username) {
         this.podeExcluir = true;
@@ -63,6 +64,27 @@ export class DuvidaPage implements OnInit {
       if (admin) {
         this.podeExcluir = true;
       }
+    });
+  }
+
+  adminExcluirTopico(id: number) {
+    this.api.adminExcluirTopico(id).subscribe({
+      next: (res) => {
+        this.toastTopicoExcluido("Dúvida excluida com sucesso!");
+        this.navCtrl.navigateBack("/tabs/duvidas");
+      },
+      error: (err) => {
+        this.toastTopicoExcluido("Erro ao excluir tópico")
+        console.error(err);
+      }
+    });
+  }
+
+  toastTopicoExcluido(msg: string) {
+    this.toastCtrl.create({
+      message: msg,
+    }).then(toast => {
+      toast.present();
     });
   }
 }

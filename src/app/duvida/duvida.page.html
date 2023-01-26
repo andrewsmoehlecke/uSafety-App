@@ -11,7 +11,7 @@
 <ion-content class="conteudo">
   <div class="margin-top">
     <ion-item class="duvida">
-      <div class="padding" *ngIf="duvida.anonimo">
+      <div class="padding">
 
         <div class="header">
           <div class="avatar">
@@ -23,8 +23,7 @@
             </ion-chip>
           </div>
 
-          <div class="btn-excluir" *ngIf="podeExcluir">
-            {{podeExcluir}}
+          <div class="excluir-topico" *ngIf="podeExcluir">
             <ion-button class="btn-excluir" (click)="excluirDuvidaAlert()">
               <ion-icon name="trash"></ion-icon>
             </ion-button>

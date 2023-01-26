@@ -17,7 +17,7 @@
 <ion-content class="conteudo">
   <ion-list class="lista">
     <ion-item class="duvida" *ngFor="let duvida of duvidas">
-      <div class="padding" *ngIf="duvida.anonimo" (click)="abrirVisualizacaoCompleta(duvida)">
+      <div class="padding" (click)="abrirVisualizacaoCompleta(duvida)">
         <div class="imagem">
           <img [src]="duvida.imagem">
         </div>

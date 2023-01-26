@@ -15,9 +15,12 @@
                 padding: 1em 0;
 
                 .header {
+                    display: flex;
+
                     .avatar {
                         text-align: start;
                         height: 4em;
+                        width: 80%;
 
                         .ion-chip {
                             background-color: transparent;
@@ -38,12 +41,21 @@
                         }
                     }
 
-                    .btn-excluir {
-                        color: $mensagem-erro;
-                        font-size: 1.5em;
-                        margin: 0;
-                        padding: 0;
-                        text-align: end;
+                    .excluir-topico {
+                        width: 20%;
+                        display: flex;
+
+                        .btn-excluir {
+                            box-shadow: none;
+                            border: none;
+                            --background: transparent;
+                            color: $mensagem-erro;
+                            padding: 0;
+                            text-align: end;
+                            --box-shadow: none;
+                            font-size: 20px;
+                            margin: auto 0;
+                        }
                     }
                 }
 
