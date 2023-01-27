@@ -162,8 +162,25 @@ export class ApiServiceService {
         })
       );
   }
+
+  adicionarComentario(data: CriarComentarioDto) {
+    return this.http.post<any>(this.url + "/comentario/criar", data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
 }
 
+export interface CriarComentarioDto {
+  conteudo: string;
+  horaPublicacao: string;
+  topico: number;
+}
 
 export interface TopicoDto {
   id: number;

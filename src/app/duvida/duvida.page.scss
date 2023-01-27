@@ -53,7 +53,7 @@
                             padding: 0;
                             text-align: end;
                             --box-shadow: none;
-                            font-size: 20px;
+                            font-size: 18px;
                             margin: auto 0;
                         }
                     }
@@ -93,6 +93,31 @@
                     .horaPublicacao {
                         width: 97%;
                         text-align: end;
+                    }
+                }
+
+                .comentario {
+                    display: flex;
+
+                    .form {
+                        width: 100%;
+
+                        ion-item {
+                            width: 100%;
+                            height: fit-content;
+                            border-radius: 1em;
+                        }
+
+                        .input {
+                            color: $azul;
+                            width: 100%;
+                        }
+
+                        .btn {
+                            width: 3em;
+                            height: 3em;
+                            --background: #02457A;
+                        }
                     }
                 }
             }

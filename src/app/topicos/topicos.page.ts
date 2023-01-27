@@ -21,8 +21,11 @@ export class TopicosPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.buscarConteudo();
     this.verificarCargo();
+  }
+
+  ionViewWillEnter() {
+    this.buscarConteudo();
   }
 
   buscarConteudo() {

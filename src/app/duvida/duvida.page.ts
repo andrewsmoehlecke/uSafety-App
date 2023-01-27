@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
-import { ApiServiceService, TopicoDto } from '../services/api-service.service';
 import { Storage } from '@ionic/storage-angular';
+import { ApiServiceService, TopicoDto } from '../services/api-service.service';
 
 @Component({
   selector: 'app-duvida',
@@ -15,19 +16,32 @@ export class DuvidaPage implements OnInit {
 
   podeExcluir: boolean = false;
 
+  podeValidar: boolean = false;
+
+  formComentario: FormGroup = new FormGroup({});
+
   constructor(
     private route: ActivatedRoute,
     private alertController: AlertController,
     private storage: Storage,
     private api: ApiServiceService,
     private toastCtrl: ToastController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private formBuilder: FormBuilder,
   ) {
     this.duvida = JSON.parse(this.route.snapshot.paramMap.get('duvida') || '{}');
     this.verificarSePodeExcluir();
+    this.iniciarFormComentario();
   }
 
   ngOnInit() { }
+
+  iniciarFormComentario() {
+    this.formComentario = this.formBuilder.group({
+      conteudo: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(60)]],
+      topico: [''],
+    });
+  }
 
   excluirDuvidaAlert() {
     this.alertController.create({
@@ -70,21 +84,41 @@ export class DuvidaPage implements OnInit {
   adminExcluirTopico(id: number) {
     this.api.adminExcluirTopico(id).subscribe({
       next: (res) => {
-        this.toastTopicoExcluido("Dúvida excluida com sucesso!");
+        this.toast("Dúvida excluida com sucesso!");
         this.navCtrl.navigateBack("/tabs/duvidas");
       },
       error: (err) => {
-        this.toastTopicoExcluido("Erro ao excluir tópico")
+        this.toast("Erro ao excluir tópico")
         console.error(err);
       }
     });
   }
 
-  toastTopicoExcluido(msg: string) {
+  toast(msg: string) {
     this.toastCtrl.create({
       message: msg,
+      duration: 2000,
     }).then(toast => {
       toast.present();
     });
+  }
+
+  adicionarComentario() {
+    this.podeExcluir = true;
+
+    if (this.formComentario.valid) {
+      this.formComentario.value.topico = this.duvida.id;
+
+      this.api.adicionarComentario(this.formComentario.value).subscribe({
+        next: (res) => {
+          this.toast("Comentário adicionado com sucesso!");
+        }, error: (err) => {
+          this.toast("Erro ao adicionar comentário")
+          console.error(err);
+        }
+      });
+    }
+
+    this.formComentario.reset();
   }
 }

@@ -46,6 +46,19 @@
         <div class="info">
           <p class="horaPublicacao">{{ duvida.horaPublicacao | date: 'short' }}</p>
         </div>
+
+        <div class="comentario">
+          <form class="form" [formGroup]="formComentario">
+            <ion-item>
+              <ion-input class="input" type="text" formControlName="conteudo" maxlength="60"
+                placeholder="Escreva um comentário..."></ion-input>
+
+              <ion-button class="btn" (click)="adicionarComentario()">
+                <ion-icon name="send"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </form>
+        </div>
       </div>
     </ion-item>
   </div>

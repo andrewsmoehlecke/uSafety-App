@@ -16,7 +16,9 @@ export class DuvidasPage implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  ionViewWillEnter() {
     this.buscarDuvidas();
   }
 

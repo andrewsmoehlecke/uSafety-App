@@ -16,7 +16,9 @@ export class DiscussoesPage implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  ionViewWillEnter() {
     this.buscarDiscussoes();
   }
 

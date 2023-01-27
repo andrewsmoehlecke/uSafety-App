@@ -6,8 +6,6 @@
 
 .conteudo {
     .lista {
-        margin-top: 1em;
-
         .discussao {
             color: $azul;
             --background: #FDFDFD;
@@ -32,6 +30,8 @@
 
                 .titulo {
                     text-align: center;
+                    max-height: 5em;
+                    overflow: hidden;
 
                     h2 {
                         margin: 0;
