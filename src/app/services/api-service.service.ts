@@ -174,6 +174,27 @@ export class ApiServiceService {
         })
       );
   }
+
+  buscarComentariosPorTopico(id: number) {
+    return this.http.get<ComentarioDto[]>(this.url + "/comentario/buscarPorTopico/" + id)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
+}
+
+export interface ComentarioDto {
+  id: number;
+  conteudo: string;
+  horaPublicacao: Date;
+  ultimaEdicao: Date;
+  visivel: boolean;
+  autor: Usuario;
 }
 
 export interface CriarComentarioDto {

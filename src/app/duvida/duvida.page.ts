@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
-import { ApiServiceService, TopicoDto } from '../services/api-service.service';
+import { ApiServiceService, ComentarioDto, TopicoDto } from '../services/api-service.service';
 
 @Component({
   selector: 'app-duvida',
@@ -19,6 +19,8 @@ export class DuvidaPage implements OnInit {
   podeValidar: boolean = false;
 
   formComentario: FormGroup = new FormGroup({});
+
+  comentarios: ComentarioDto[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -120,5 +122,15 @@ export class DuvidaPage implements OnInit {
     }
 
     this.formComentario.reset();
+  }
+
+  buscarComentarios() {
+    this.api.buscarComentariosPorTopico(this.duvida.id).subscribe({
+      next: (res) => {
+        this.comentarios = res;
+      }, error: (err) => {
+        console.error(err);
+      }
+    });
   }
 }
