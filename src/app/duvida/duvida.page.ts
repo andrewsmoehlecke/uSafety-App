@@ -38,9 +38,13 @@ export class DuvidaPage implements OnInit {
 
   ngOnInit() { }
 
+  ionViewWillEnter() {
+    this.buscarComentarios();
+  }
+
   iniciarFormComentario() {
     this.formComentario = this.formBuilder.group({
-      conteudo: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(60)]],
+      conteudo: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(150)]],
       topico: [''],
     });
   }
@@ -114,6 +118,7 @@ export class DuvidaPage implements OnInit {
       this.api.adicionarComentario(this.formComentario.value).subscribe({
         next: (res) => {
           this.toast("Comentário adicionado com sucesso!");
+          this.buscarComentarios();
         }, error: (err) => {
           this.toast("Erro ao adicionar comentário")
           console.error(err);
@@ -131,6 +136,43 @@ export class DuvidaPage implements OnInit {
       }, error: (err) => {
         console.error(err);
       }
+    });
+  }
+
+  adminExcluirComentario(id: number) {
+    this.api.adminExcluirComentario(id).subscribe({
+      next: (res: any) => {
+        this.toast("Comentário excluido com sucesso!");
+        this.buscarComentarios();
+      },
+      error: (err: any) => {
+        this.toast("Erro ao excluir comentário")
+        console.error(err);
+      }
+    });
+  }
+
+  excluirDuvidaAlertComentario(id: number) {
+    this.alertController.create({
+      header: "Tem certeza que deseja excluir este comentário?",
+      message: "Esta ação não pode ser desfeita.",
+      backdropDismiss: true,
+      cssClass: "alerta-excluir-duvida",
+      buttons: [
+        {
+          text: "Sim",
+          cssClass: "btn-sim",
+          handler: () => {
+            this.adminExcluirComentario(id)
+          }
+        },
+        {
+          text: "Cancelar",
+          cssClass: "btn-cancelar",
+        }
+      ]
+    }).then(alert => {
+      alert.present();
     });
   }
 }

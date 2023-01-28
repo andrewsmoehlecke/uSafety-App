@@ -1,6 +1,23 @@
 @import '/src/theme/variables.scss';
 
 .conteudo {
+    .excluir-topico {
+        width: 20%;
+        display: flex;
+
+        .btn-excluir {
+            box-shadow: none;
+            border: none;
+            --background: transparent;
+            color: $mensagem-erro;
+            padding: 0;
+            text-align: end;
+            --box-shadow: none;
+            font-size: 18px;
+            margin: auto 0;
+        }
+    }
+
     .margin-top {
         margin-top: 1em;
 
@@ -38,23 +55,6 @@
                                 font-size: 12pt;
                                 overflow: hidden;
                             }
-                        }
-                    }
-
-                    .excluir-topico {
-                        width: 20%;
-                        display: flex;
-
-                        .btn-excluir {
-                            box-shadow: none;
-                            border: none;
-                            --background: transparent;
-                            color: $mensagem-erro;
-                            padding: 0;
-                            text-align: end;
-                            --box-shadow: none;
-                            font-size: 18px;
-                            margin: auto 0;
                         }
                     }
                 }
@@ -122,6 +122,62 @@
                 }
             }
         }
+    }
 
+    .lista {
+        .titulo {
+            color: $azul;
+            font-size: 1.5em;
+            margin: 0 1em;
+        }
+
+        .comentario {
+            box-shadow: 2px 4px 10px 0px rgb(0 0 0 / 31%);
+            color: $azul;
+            border-radius: 1em;
+            --background: #FDFDFD;
+            margin: 1em;
+
+            .padding {
+                width: 100%;
+
+                .header {
+                    display: flex;
+
+                    .avatar {
+                        width: 80%;
+                    }
+
+                    .excluir-topico {
+                        width: 20%;
+                        display: flex;
+                        right: 0;
+
+                        .icone-invisivel {
+                            font-size: 1.6em;
+                            margin: auto;
+                        }
+                    }
+                }
+
+                .avatar {
+                    .ion-chip {
+                        background-color: transparent;
+                        margin-bottom: 0.5em;
+                        height: 4em;
+
+                        .nomeAutor {
+                            color: $azul;
+                        }
+                    }
+                }
+
+                .conteudo {
+                    p {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
     }
 }

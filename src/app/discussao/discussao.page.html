@@ -62,4 +62,41 @@
       </div>
     </ion-item>
   </div>
+
+  <ion-list class="lista" *ngIf="comentarios.length > 0">
+    <div class="titulo">
+      <h2>Comentários</h2>
+    </div>
+
+    <div *ngFor="let c of comentarios">
+      <ion-item class="comentario" *ngIf="c.visivel || podeExcluir">
+        <div class="padding">
+          <div class="header">
+            <div class="avatar">
+              <ion-chip class="ion-chip">
+                <ion-avatar class="ion-avatar">
+                  <img class="fotoPerfil" alt="Foto de perfil do usuário" [src]="c.autor.fotoPerfil" />
+                </ion-avatar>
+                <ion-label class="nomeAutor">{{ c.autor.nomeCompleto }}</ion-label>
+              </ion-chip>
+            </div>
+
+            <div class="excluir-topico" *ngIf="podeExcluir  && c.visivel">
+              <ion-button class="btn-excluir" (click)="excluirDuvidaAlertComentario(c.id)">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </div>
+
+            <div class="excluir-topico" *ngIf="podeExcluir && !c.visivel">
+              <ion-icon name="eye-off-outline" class="icone-invisivel"></ion-icon>
+            </div>
+          </div>
+
+          <div class="conteudo">
+            <p>{{ c.conteudo }}</p>
+          </div>
+        </div>
+      </ion-item>
+    </div>
+  </ion-list>
 </ion-content>

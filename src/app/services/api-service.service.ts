@@ -176,7 +176,19 @@ export class ApiServiceService {
   }
 
   buscarComentariosPorTopico(id: number) {
-    return this.http.get<ComentarioDto[]>(this.url + "/comentario/buscarPorTopico/" + id)
+    return this.http.get<ComentarioDto[]>(this.url + "/comentario/buscarPorTopico?id=" + id)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
+
+  adminExcluirComentario(id: number) {
+    return this.http.delete<any>(this.url + "/comentario/excluir?id=" + id)
       .pipe(
         map((res: any) => {
           return res;
