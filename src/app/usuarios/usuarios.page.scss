@@ -3,13 +3,18 @@
 .conteudo {
     .lista {
         .usuario {
+            width: 100%;
+            margin: 0.5em 0;
+
             .padding {
-                max-width: 100%;
+                width: 100%;
+                background-color: $azul;
+                border-radius: 1em;
 
                 .header {
                     .avatar {
                         .ion-chip {
-                            background-color: $azul;
+                            background-color: transparent;
                             color: $branco;
                             height: 4em;
 
