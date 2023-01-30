@@ -1,0 +1,26 @@
+@import '../../theme/variables.scss';
+
+.conteudo {
+    .lista {
+        .usuario {
+            .padding {
+                max-width: 100%;
+
+                .header {
+                    .avatar {
+                        .ion-chip {
+                            background-color: $azul;
+                            color: $branco;
+                            height: 4em;
+
+                            .ion-avatar {
+                                width: 3em;
+                                height: 3em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -79,8 +79,8 @@ export class ApiServiceService {
       );
   }
 
-  listarUsuarios() {
-    return this.http.get<Usuario[]>(this.url + "/usuario/listarUsuarios")
+  buscarUsuarios() {
+    return this.http.get<Usuario[]>(this.url + "/usuario/buscarUsuarios")
       .pipe(
         map((res: any) => {
           return res;
@@ -189,6 +189,18 @@ export class ApiServiceService {
 
   adminExcluirComentario(id: number) {
     return this.http.delete<any>(this.url + "/comentario/excluir?id=" + id)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
+
+  adminEditarUsuario(usuario: Usuario) {
+    return this.http.put<any>(this.url + "/usuario/editar", usuario)
       .pipe(
         map((res: any) => {
           return res;

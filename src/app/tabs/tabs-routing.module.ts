@@ -8,6 +8,8 @@ import { DuvidasPage } from '../duvidas/duvidas.page';
 import { MeuPerfilPage } from '../meu-perfil/meu-perfil.page';
 import { TopicoPage } from '../topico/topico.page';
 import { TopicosPage } from '../topicos/topicos.page';
+import { UsuarioPage } from '../usuario/usuario.page';
+import { UsuariosPage } from '../usuarios/usuarios.page';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -46,6 +48,14 @@ const routes: Routes = [
       {
         path: 'meu-perfil',
         component: MeuPerfilPage
+      },
+      {
+        path: 'usuarios',
+        component: UsuariosPage
+      },
+      {
+        path: 'usuario',
+        component: UsuarioPage
       },
       {
         path: '',

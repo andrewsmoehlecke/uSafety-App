@@ -1,0 +1,23 @@
+@import '../../theme/variables.scss';
+
+.conteudo {
+    .form {
+        .imagem {
+            max-width: 60vw;
+            max-height: 60vh;
+            margin: 0 auto;
+            text-align: center;
+
+            img {
+                border-radius: 1em;
+            }
+        }
+
+        .inputs {
+
+            ion-item {
+                color: $azul;
+            }
+        }
+    }
+}

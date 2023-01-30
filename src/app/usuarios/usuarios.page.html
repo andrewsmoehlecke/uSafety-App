@@ -1,0 +1,30 @@
+<ion-header class="header">
+  <ion-toolbar class="toolbar">
+    <ion-title>Usuários</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="conteudo">
+  <ion-list class="lista">
+    <ion-item class="usuario" *ngFor="let u of usuarios">
+      <div class="padding" (click)="abrirPerfil(u)">
+        <div class="header">
+          <div class="avatar">
+            <ion-chip class="ion-chip">
+              <ion-avatar class="ion-avatar">
+                <img class="fotoPerfil" *ngIf="u.fotoPerfil != null" [src]="u.fotoPerfil" />
+
+                <img class="fotoPerfil" *ngIf="u.fotoPerfil == null" src="../../assets/img/avatar.svg" />
+              </ion-avatar>
+              <ion-label class="nomeUsuario">{{ u.username }} / {{ u.nomeCompleto }}</ion-label>
+            </ion-chip>
+          </div>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

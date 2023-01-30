@@ -24,6 +24,8 @@ import { Settings } from './services/settings';
 import { TabsPage } from './tabs/tabs.page';
 import { TopicoPage } from './topico/topico.page';
 import { TopicosPage } from './topicos/topicos.page';
+import { UsuarioPage } from './usuario/usuario.page';
+import { UsuariosPage } from './usuarios/usuarios.page';
 
 export function provideSettings(storage: Storage) {
   /**
@@ -51,6 +53,8 @@ export function provideSettings(storage: Storage) {
     CriarTopicoPage,
     MeuPerfilPage,
     TabsPage,
+    UsuariosPage,
+    UsuarioPage,
   ],
   imports: [
     ReactiveFormsModule,
