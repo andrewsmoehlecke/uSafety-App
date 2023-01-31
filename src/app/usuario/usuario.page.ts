@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { PasswordValidator } from 'src/util/validar-senha';
 import { ApiServiceService, Usuario } from '../services/api-service.service';
 
 @Component({
@@ -15,7 +16,11 @@ export class UsuarioPage implements OnInit {
 
   formUsuario: FormGroup = new FormGroup({});
 
+  verificacaoSenha: FormGroup = new FormGroup({});
+
   podeValidar: boolean = false;
+
+  readOnly: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,26 +37,57 @@ export class UsuarioPage implements OnInit {
 
 
   iniciarFormulario() {
-    this.formUsuario = this.formBuilder.group({
-      id: [this.usuario.id],
-      username: [this.usuario.username],
-      nomeCompleto: [this.usuario.nomeCompleto],
-      email: [this.usuario.email],
-      dataNascimento: [this.usuario.dataNascimento],
-      senha: [this.usuario.senha],
-      fotoPerfil: [this.usuario.fotoPerfil]
-    });
+    if (this.usuario) {
+      this.readOnly = true;
+
+      this.formUsuario = this.formBuilder.group({
+        id: [this.usuario.id],
+        username: [this.usuario.username],
+        nomeCompleto: [this.usuario.nomeCompleto],
+        email: [this.usuario.email],
+        dataNascimento: [this.usuario.dataNascimento],
+        senha: [this.usuario.senha],
+        fotoPerfil: [this.usuario.fotoPerfil]
+      });
+    } else {
+      this.verificacaoSenha = new FormGroup({
+        senha: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]),
+        confirmarSenha: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)])
+      }, (formGroup: any) => {
+        return PasswordValidator.areEqual(formGroup);
+      });
+
+      this.formUsuario = this.formBuilder.group({
+        id: [''],
+        username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+        nomeCompleto: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+        email: ['', [Validators.required, Validators.email]],
+        dataNascimento: ['', Validators.required],
+        senha: this.verificacaoSenha,
+        fotoPerfil: ['']
+      });
+    }
   }
 
   get errorControl() {
     return this.formUsuario.controls;
   }
 
+  get errorControlSenha() {
+    return this.verificacaoSenha.controls;
+  }
+
   salvarPerfil() {
-    this.apiService.adminEditarUsuario(this.formUsuario.value).subscribe((res: any) => {
-      this.toast(res);
-    }, (err: any) => {
-      this.toast(err);
+    this.apiService.adminEditarUsuario(this.formUsuario.value).subscribe({
+      next: (res) => {
+        if (res.resposta == "usuarioAtualizado") {
+          this.toast("Perfil atualizado com sucesso!");
+        }
+      },
+      error: (err) => {
+        this.toast("Erro ao atualizar perfil!");
+        console.error(err);
+      }
     });
   }
 

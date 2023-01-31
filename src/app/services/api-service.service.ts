@@ -200,9 +200,9 @@ export class ApiServiceService {
   }
 
   adminEditarUsuario(usuario: Usuario) {
-    return this.http.put<any>(this.url + "/usuario/editar", usuario)
+    return this.http.put<RespostaSimplesDto>(this.url + "/usuario/editar", usuario)
       .pipe(
-        map((res: any) => {
+        map((res) => {
           return res;
         }),
         catchError((err: HttpErrorResponse) => {
@@ -210,6 +210,10 @@ export class ApiServiceService {
         })
       );
   }
+}
+
+export interface RespostaSimplesDto {
+  resposta: string;
 }
 
 export interface ComentarioDto {

@@ -26,13 +26,14 @@ export class MeuPerfilPage implements OnInit {
   ngOnInit() { }
 
   buscarPerfil() {
-    this.api.buscarUsuarioLogado().subscribe(
-      (res: Usuario) => {
+    this.api.buscarUsuarioLogado().subscribe({
+      next: (res) => {
         this.usuario = res;
-      }, (err) => {
-        console.log(err);
+      },
+      error: (err) => {
+        console.error(err);
       }
-    );
+    });
   }
 
   salvarPerfil() {

@@ -1,22 +1,48 @@
 @import '../../theme/variables.scss';
 
 .conteudo {
-    .form {
-        .imagem {
-            max-width: 60vw;
-            max-height: 60vh;
-            margin: 0 auto;
-            text-align: center;
+    .usuario {
+        background-color: $azul-marinho;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 90%;
+        height: fit-content;
+        border-radius: $border-radius-container;
 
-            img {
-                border-radius: 1em;
-            }
+        ion-list {
+            background: transparent;
         }
 
-        .inputs {
+        ion-item {
+            color: $branco;
+            --background: transparent;
+        }
 
-            ion-item {
+        .form {
+            .lista {
+                .imagem {
+                    margin: 0 auto;
+
+                    ion-avatar {
+                        width: 5em;
+                        height: 5em;
+                        margin: 1em auto;
+                        border-radius: 2em;
+                    }
+                }
+
+            }
+
+            .button {
+                margin: 1em auto 1.5em;
+                --background: #fdfdfd;
                 color: $azul;
+                width: 90%;
+                border-radius: 1rem;
             }
         }
     }
