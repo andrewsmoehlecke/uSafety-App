@@ -1,5 +1,9 @@
 @import '../../theme/variables.scss';
 
+.btnCriarUsuario {
+    --background: transparent;
+}
+
 .conteudo {
     .lista {
         .usuario {

@@ -24,17 +24,20 @@
 
         .form {
             .lista {
-                .imagem {
-                    margin: 0 auto;
+                .inputs {
+                    padding: 1em;
 
-                    ion-avatar {
-                        width: 5em;
-                        height: 5em;
-                        margin: 1em auto;
-                        border-radius: 2em;
+                    .imagem {
+                        margin: 0 auto;
+
+                        ion-avatar {
+                            width: 5em;
+                            height: 5em;
+                            margin: 1em auto;
+                            border-radius: 2em;
+                        }
                     }
                 }
-
             }
 
             .button {

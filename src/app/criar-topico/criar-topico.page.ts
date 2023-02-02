@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
-import { Storage, ref } from '@angular/fire/storage';
+import { Storage } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
@@ -24,9 +24,6 @@ export class CriarTopicoPage implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private imagePicker: ImagePicker,
-    private toast: ToastController,
-    private fireStore: Firestore,
-    private storage: Storage,
   ) {
     this.tipoTopico = String(this.route.snapshot.paramMap.get('tipo'));
 

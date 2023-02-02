@@ -13,7 +13,7 @@
     <form class="form" [formGroup]="formUsuario">
       <ion-list class="lista">
         <div class="inputs">
-          <ion-item class="imagem">
+          <ion-item class="imagem" *ngIf="readOnly">
             <ion-avatar *ngIf="formUsuario.value.fotoPerfil == ''">
               <img src="../../assets/img/avatar.svg">
             </ion-avatar>
@@ -46,6 +46,12 @@
               *ngIf='podeValidar && errorControl.email.errors?.required || errorControl.email.errors?.pattern'>
               Email inválido!
             </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Foto Perfil</ion-label>
+
+            <ion-input type="text" formControlName="fotoPerfil" placeholder="Url da foto"></ion-input>
           </ion-item>
 
           <ion-item>
@@ -87,7 +93,11 @@
 
       <ion-row>
         <ion-col>
-          <ion-button (click)="salvarPerfil()" class="button" type="submit" expand="block">Salvar</ion-button>
+          <ion-button *ngIf="readOnly" (click)="salvarPerfil()" class="button" type="submit"
+            expand="block">Salvar</ion-button>
+
+          <ion-button *ngIf="!readOnly" (click)="criarUsuario()" class="button" type="submit"
+            expand="block">Criar</ion-button>
         </ion-col>
       </ion-row>
     </form>

@@ -37,4 +37,8 @@ export class UsuariosPage implements OnInit {
   abrirPerfil(usuario: Usuario) {
     this.router.navigate(['/tabs/usuario', { usuario: JSON.stringify(usuario) }]);
   }
+
+  criarUsuario() {
+    this.router.navigate(['/tabs/usuario', { usuario: JSON.stringify({}) }]);
+  }
 }

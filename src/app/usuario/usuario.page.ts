@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavController, ToastController } from '@ionic/angular';
 import { PasswordValidator } from 'src/util/validar-senha';
-import { ApiServiceService, Usuario } from '../services/api-service.service';
+import { ApiServiceService, RespostaSimplesDto, Usuario } from '../services/api-service.service';
 
 @Component({
   selector: 'app-usuario',
@@ -27,6 +27,7 @@ export class UsuarioPage implements OnInit {
     private apiService: ApiServiceService,
     private formBuilder: FormBuilder,
     private toastController: ToastController,
+    private navCtrl: NavController
   ) {
     this.usuario = JSON.parse(this.route.snapshot.paramMap.get('usuario') || '{}');
   }
@@ -37,7 +38,7 @@ export class UsuarioPage implements OnInit {
 
 
   iniciarFormulario() {
-    if (this.usuario) {
+    if (this.usuario.id != null) {
       this.readOnly = true;
 
       this.formUsuario = this.formBuilder.group({
@@ -78,17 +79,52 @@ export class UsuarioPage implements OnInit {
   }
 
   salvarPerfil() {
-    this.apiService.adminEditarUsuario(this.formUsuario.value).subscribe({
-      next: (res) => {
-        if (res.resposta == "usuarioAtualizado") {
-          this.toast("Perfil atualizado com sucesso!");
+    this.podeValidar = true;
+
+    if (this.formUsuario.valid) {
+      this.apiService.adminEditarUsuario(this.formUsuario.value).subscribe({
+        next: (res) => {
+          if (res.resposta == "usuarioAtualizado") {
+            this.toast("Perfil atualizado com sucesso!");
+          }
+        },
+        error: (err) => {
+          this.toast("Erro ao atualizar perfil!");
+          console.error(err);
         }
-      },
-      error: (err) => {
-        this.toast("Erro ao atualizar perfil!");
-        console.error(err);
-      }
-    });
+      });
+    }
+  }
+
+  criarUsuario() {
+    this.podeValidar = true;
+
+    if (this.formUsuario.valid) {
+      let usuario: Usuario = {
+        id: this.formUsuario.value.id,
+        username: this.formUsuario.value.username,
+        nomeCompleto: this.formUsuario.value.nomeCompleto,
+        email: this.formUsuario.value.email,
+        dataNascimento: this.formUsuario.value.dataNascimento,
+        senha: this.formUsuario.value.senha.senha,
+        fotoPerfil: this.formUsuario.value.fotoPerfil
+      };
+
+      this.apiService.adminCriarUsuario(usuario).subscribe({
+        next: (res: RespostaSimplesDto) => {
+          console.log(res)
+          if (res.resposta == "usuarioCriado") {
+            this.toast("Usuário criado com sucesso!");
+
+            this.navCtrl.navigateRoot('/admin/usuarios');
+          }
+        },
+        error: (err: any) => {
+          this.toast("Erro ao criar usuário!");
+          console.error(err);
+        }
+      });
+    }
   }
 
   toast(mensagem: string) {

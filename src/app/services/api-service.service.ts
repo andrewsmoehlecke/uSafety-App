@@ -210,6 +210,18 @@ export class ApiServiceService {
         })
       );
   }
+
+  adminCriarUsuario(usuario: Usuario) {
+    return this.http.post<RespostaSimplesDto>(this.url + "/admin/criar", usuario)
+      .pipe(
+        map((res) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
 }
 
 export interface RespostaSimplesDto {
