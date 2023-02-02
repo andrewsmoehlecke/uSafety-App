@@ -222,6 +222,18 @@ export class ApiServiceService {
         })
       );
   }
+
+  atualizarPerfil(usuario: Usuario) {
+    return this.http.put<RespostaSimplesDto>(this.url + "/usuario/editar", usuario)
+      .pipe(
+        map((res) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
 }
 
 export interface RespostaSimplesDto {

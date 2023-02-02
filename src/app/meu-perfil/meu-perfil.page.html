@@ -11,69 +11,78 @@
 </ion-header>
 
 <ion-content class="conteudo">
-  <form class="form" [formGroup]="formUsuario">
-    <ion-list>
+  <div class="perfil">
+    <form class="form" [formGroup]="formUsuario">
+      <ion-list class="lista">
+        <div class="inputs">
 
-      <div class="inputs">
+          <ion-item class="imagem">
+            <ion-avatar *ngIf="formUsuario.value.fotoPerfil == ''">
+              <img src="../../assets/img/avatar.svg">
+            </ion-avatar>
 
-        <ion-item class="imagem">
-          <ion-avatar>
-            <img *ngIf="formUsuario.value.fotoPerfil == ''" src="../../assets/img/avatar.svg"
-              (click)="selecionarImagem()">
-          </ion-avatar>
+            <ion-avatar *ngIf="formUsuario.value.fotoPerfil != ''">
+              <img [src]="formUsuario.value.fotoPerfil">
+            </ion-avatar>
+          </ion-item>
 
-          <ion-avatar>
-            <img *ngIf="formUsuario.value.fotoPerfil != ''" [src]="formUsuario.value.fotoPerfil"
-              (click)="selecionarImagem()">
-          </ion-avatar>
+          <ion-item>
+            <ion-label position="floating">Usuario</ion-label>
+            <ion-input type="text" formControlName="username" [disabled]="true" readonly></ion-input>
+          </ion-item>
 
-          <ion-icon name="add-outline"></ion-icon>
-        </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nome Completo</ion-label>
+            <ion-input type="text" formControlName="nomeCompleto" [clearInput]="true"
+              placeholder="Digite seu nome completo"></ion-input>
 
-        <ion-item>
-          <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="text" formControlName="username" [disabled]="true"></ion-input>
-        </ion-item>
+            <ion-note slot="error" class="mensagemErro" no-lines
+              *ngIf='podeValidar && errorControl.nome.errors?.required'>
+              Campo obrigatório!
+            </ion-note>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Nome Completo</ion-label>
-          <ion-input type="text" formControlName="nome" [clearInput]="true"
-            placeholder="Digite seu nome completo"></ion-input>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" formControlName="email" [clearInput]="true"
+              placeholder="Digite seu email"></ion-input>
 
-          <ion-note slot="error" class="mensagemErro" no-lines
-            *ngIf='podeValidar && errorControl.nome.errors?.required'>
-            Campo obrigatório!
-          </ion-note>
-        </ion-item>
+            <ion-note slot="error" class="mensagemErro" no-lines
+              *ngIf='podeValidar && errorControl.email.errors?.required || errorControl.email.errors?.pattern'>
+              Email inválido!
+            </ion-note>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input type="text" formControlName="email" [clearInput]="true" placeholder="Digite seu email"></ion-input>
+          <ion-item>
+            <ion-label position="floating">Foto Perfil</ion-label>
+            <ion-input type="text" formControlName="fotoPerfil" [clearInput]="true"
+              placeholder="Url da imagem"></ion-input>
 
-          <ion-note slot="error" class="mensagemErro" no-lines
-            *ngIf='podeValidar && errorControl.email.errors?.required || errorControl.email.errors?.pattern'>
-            Email inválido!
-          </ion-note>
-        </ion-item>
+            <ion-note slot="error" class="mensagemErro" no-lines
+              *ngIf='podeValidar && errorControl.email.errors?.pattern'>
+              Url inválida!
+            </ion-note>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Data de Nascimento</ion-label>
-          <ion-input type="date" displayFormat="MM/DD/YYYY" formControlName="nascimento"
-            placeholder="Seu aniversário"></ion-input>
+          <ion-item>
+            <ion-label position="floating">Data de Nascimento</ion-label>
+            <ion-input type="date" displayFormat="MM/DD/YYYY" formControlName="dataNascimento"
+              placeholder="Seu aniversário"></ion-input>
 
-          <ion-note slot="error" class="mensagemErro" no-lines
-            *ngIf='podeValidar && errorControl.nascimento.errors?.required'>
-            Campo obrigatório!
-          </ion-note>
-        </ion-item>
-      </div>
+            <ion-note slot="error" class="mensagemErro" no-lines
+              *ngIf='podeValidar && errorControl.nascimento.errors?.required'>
+              Campo obrigatório!
+            </ion-note>
+          </ion-item>
+        </div>
 
-    </ion-list>
+      </ion-list>
 
-    <ion-row>
-      <ion-col>
-        <ion-button (click)="salvarPerfil()" class="button" type="submit" expand="block">Salvar</ion-button>
-      </ion-col>
-    </ion-row>
-  </form>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="salvarPerfil()" class="button" type="submit" expand="block">Salvar</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
 </ion-content>

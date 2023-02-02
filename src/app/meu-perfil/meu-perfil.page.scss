@@ -1,26 +1,51 @@
 @import '/src/theme/variables.scss';
 
 .conteudo {
-    .form {
-        .imagem {
-            max-width: 60vw;
-            max-height: 60vh;
-            margin: 0 auto;
-            text-align: center;
+    .perfil {
+        background-color: $azul-marinho;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 90%;
+        height: fit-content;
+        border-radius: $border-radius-container;
 
-            img {
-                border-radius: 1em;
+        ion-list {
+            background: transparent;
+        }
+
+        ion-item {
+            color: $branco;
+            --background: transparent;
+        }
+
+        .form {
+            .lista {
+                .inputs {
+                    padding: 1em;
+
+                    .imagem {
+                        margin: 0 auto;
+
+                        ion-avatar {
+                            width: 5em;
+                            height: 5em;
+                            margin: 1em auto;
+                            border-radius: 2em;
+                        }
+                    }
+                }
             }
 
-            ion-icon {
-                position: absolute;
-                bottom: 0;
-                right: 0.5em;
-                background: $azul;
-                color: $branco;
-                padding: 0.3em;
-                border-radius: 1em;
-                font-size: 1.8em;
+            .button {
+                margin: 1em auto 1.5em;
+                --background: #fdfdfd;
+                color: $azul;
+                width: 90%;
+                border-radius: 1rem;
             }
         }
     }

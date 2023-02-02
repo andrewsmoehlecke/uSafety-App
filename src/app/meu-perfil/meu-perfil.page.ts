@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 import { ApiServiceService, Usuario } from '../services/api-service.service';
 
 @Component({
@@ -18,9 +19,9 @@ export class MeuPerfilPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private api: ApiServiceService,
+    private toastCtrl: ToastController
   ) {
     this.buscarPerfil();
-    this.inicializarFormulario();
   }
 
   ngOnInit() { }
@@ -29,6 +30,7 @@ export class MeuPerfilPage implements OnInit {
     this.api.buscarUsuarioLogado().subscribe({
       next: (res) => {
         this.usuario = res;
+        this.inicializarFormulario();
       },
       error: (err) => {
         console.error(err);
@@ -39,10 +41,20 @@ export class MeuPerfilPage implements OnInit {
   salvarPerfil() {
     this.podeValidar = true;
 
-  }
-
-  selecionarImagem() {
-    console.log('Selecionar imagem');
+    if (this.formUsuario.valid) {
+      this.api.atualizarPerfil(this.formUsuario.value).subscribe({
+        next: (res) => {
+          if (res.resposta == "usuarioAtualizado") {
+            this.toast('Perfil atualizado com sucesso!');
+          } else if (res.resposta == "usuarioNaoEncontrado") {
+            this.toast('Erro ao atualizar perfil!');
+          }
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
+    }
   }
 
   get errorControl() {
@@ -51,12 +63,21 @@ export class MeuPerfilPage implements OnInit {
 
   inicializarFormulario() {
     this.formUsuario = this.formBuilder.group({
-      id: ['', [Validators.required]],
-      username: ['', [Validators.required, Validators.minLength(4)]],
-      nome: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")]],
-      nascimento: ['', [Validators.required]],
-      fotoPerfil: ['', Validators.required]
+      id: [this.usuario.id, [Validators.required]],
+      username: [this.usuario.username, [Validators.required, Validators.minLength(4)]],
+      nomeCompleto: [this.usuario.nomeCompleto, [Validators.required]],
+      email: [this.usuario.email, [Validators.required, Validators.pattern("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")]],
+      dataNascimento: [this.usuario.dataNascimento, [Validators.required]],
+      fotoPerfil: [this.usuario.fotoPerfil, Validators.pattern("^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)$")],
+    });
+  }
+
+  toast(msg: string) {
+    this.toastCtrl.create({
+      message: msg,
+      duration: 2000,
+    }).then(toast => {
+      toast.present();
     });
   }
 }
