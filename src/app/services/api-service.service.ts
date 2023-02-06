@@ -28,6 +28,10 @@ export class ApiServiceService {
             console.log("info token:" + tokenInfo.exp);
             this.storage.set('token_expiration', tokenInfo.exp);
 
+            this.storage.set('isAdmin', res.admin);
+
+            this.storage.set('username', res.username);
+
             return res.token;
           } else {
             return res.error;

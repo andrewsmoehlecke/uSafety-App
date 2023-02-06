@@ -32,7 +32,7 @@ export class CriarTopicoPage implements OnInit {
       conteudo: ['', Validators.required],
       horaPublicacao: [''],
       horaEdicao: [''],
-      imagem: ['', Validators.required],
+      imagem: ['', [Validators.required]],
       anonimo: [''],
       autor: [''],
     });
@@ -44,38 +44,19 @@ export class CriarTopicoPage implements OnInit {
     return this.form.controls;
   }
 
-  selecionarImagem() {
-    this.imagePicker.getPictures({
-      maximumImagesCount: 1,
-      outputType: 1
-    }).then((results: any) => {
-      for (var i = 0; i < results.length; i++) {
-        console.log('Image URI: ')
-        console.log(results[i])
-        this.form.value.imagem = results[i];
-
-        // ref('imagens/' + this.form.value.imagem).putString(this.form.value.imagem, 'base64', { contentType: 'image/png' }).then((res: any) => {
-        //   console.log(res);
-        // }).catch((err: any) => {
-        //   console.error(err);
-        // });
-      }
-    }, (err: any) => {
-      console.error(err);
-    });
-  }
-
   criarTopico() {
     this.podeValidar = true;
 
-    this.api.criarTopico(this.form.value, this.tipoTopico).subscribe({
-      next: (res: any) => {
-        console.log(res);
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    });
+    if (this.form.valid) {
+      this.api.criarTopico(this.form.value, this.tipoTopico).subscribe({
+        next: (res: any) => {
+          console.log(res);
+        },
+        error: (err: any) => {
+          console.error(err);
+        }
+      });
+    }
   }
 
 }

@@ -68,7 +68,7 @@ export class MeuPerfilPage implements OnInit {
       nomeCompleto: [this.usuario.nomeCompleto, [Validators.required]],
       email: [this.usuario.email, [Validators.required, Validators.pattern("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")]],
       dataNascimento: [this.usuario.dataNascimento, [Validators.required]],
-      fotoPerfil: [this.usuario.fotoPerfil, Validators.pattern("^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)$")],
+      fotoPerfil: [this.usuario.fotoPerfil],
     });
   }
 

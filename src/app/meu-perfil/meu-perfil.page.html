@@ -17,11 +17,11 @@
         <div class="inputs">
 
           <ion-item class="imagem">
-            <ion-avatar *ngIf="formUsuario.value.fotoPerfil == ''">
+            <ion-avatar *ngIf="formUsuario.value.fotoPerfil == null">
               <img src="../../assets/img/avatar.svg">
             </ion-avatar>
 
-            <ion-avatar *ngIf="formUsuario.value.fotoPerfil != ''">
+            <ion-avatar *ngIf="formUsuario.value.fotoPerfil != null">
               <img [src]="formUsuario.value.fotoPerfil">
             </ion-avatar>
           </ion-item>

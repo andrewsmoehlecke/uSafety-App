@@ -36,7 +36,7 @@ export class DiscussoesPage implements OnInit {
 
 
   adicionarDiscussao() {
-    this.router.navigate(['/tabs/criar-topico', { tipo: "discussão" }]);
+    this.router.navigate(['/tabs/criar-topico', { tipo: "discussao" }]);
   }
 
   abrirVisualizacaoCompleta(discussao: TopicoDto) {

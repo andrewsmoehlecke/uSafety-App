@@ -51,6 +51,6 @@ export class TopicosPage implements OnInit {
   }
 
   adicionarConteudo() {
-    this.router.navigate(['/tabs/criar-topico', { tipo: "conteúdo" }]);
+    this.router.navigate(['/tabs/criar-topico', { tipo: "conteudo" }]);
   }
 }
