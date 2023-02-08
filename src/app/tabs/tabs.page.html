@@ -10,7 +10,7 @@
       <ion-item>
         <ion-label class="label" [routerLink]="['/tabs/meu-perfil']">- Perfil</ion-label>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="admin">
         <ion-label class="label" [routerLink]="['/tabs/usuarios']">- Usuários</ion-label>
       </ion-item>
       <ion-item>

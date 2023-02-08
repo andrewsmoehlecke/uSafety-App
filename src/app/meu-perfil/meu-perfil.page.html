@@ -37,7 +37,7 @@
               placeholder="Digite seu nome completo"></ion-input>
 
             <ion-note slot="error" class="mensagemErro" no-lines
-              *ngIf='podeValidar && errorControl.nome.errors?.required'>
+              *ngIf='podeValidar && errorControl.nomeCompleto.errors?.required'>
               Campo obrigatório!
             </ion-note>
           </ion-item>
@@ -75,7 +75,6 @@
             </ion-note>
           </ion-item>
         </div>
-
       </ion-list>
 
       <ion-row>
@@ -83,6 +82,10 @@
           <ion-button (click)="salvarPerfil()" class="button" type="submit" expand="block">Salvar</ion-button>
         </ion-col>
       </ion-row>
+
+      <div class="linkAlterarSenha">
+        <ion-button (click)="alterarSenha()">Alterar senha</ion-button>
+      </div>
     </form>
   </div>
 </ion-content>

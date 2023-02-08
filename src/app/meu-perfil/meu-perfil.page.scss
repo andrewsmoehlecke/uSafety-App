@@ -8,7 +8,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        margin: auto;
+        margin: 2em auto;
         width: 90%;
         height: fit-content;
         border-radius: $border-radius-container;
@@ -41,11 +41,22 @@
             }
 
             .button {
-                margin: 1em auto 1.5em;
+                margin: 1em auto;
                 --background: #fdfdfd;
                 color: $azul;
                 width: 90%;
                 border-radius: 1rem;
+            }
+
+            .linkAlterarSenha {
+                text-align: center;
+                margin-bottom: 1em;
+
+                ion-button {
+                    width: fit-content;
+                    font-size: 12px;
+                    height: 2em;
+                }
             }
         }
     }

@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-header class="header">
+    <ion-toolbar class="toolbar">
+      <ion-title>Alterar Senha</ion-title>
+
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</ion-header>
+
+
+<ion-content class="conteudo">
+  <div class="perfil">
+    <form class="form" [formGroup]="formSenha">
+      <ion-list class="lista">
+        <div class="inputs">
+          <ion-item *ngIf="paginaAnterior == 'meu-perfil'">
+            <ion-label position="floating">Senha Atual</ion-label>
+            <ion-input type="password" formControlName="senhaAtual" [clearInput]="true"
+              placeholder="Digite sua senha atual"></ion-input>
+
+            <ion-note slot="error" class="mensagemErro" no-lines
+              *ngIf='podeValidar && errorControl.senhaAtual.errors?.required'>
+              Campo obrigatório!
+            </ion-note>
+          </ion-item>
+
+          <div formGroupName='novaSenha'>
+            <ion-item>
+              <ion-label position="floating">Senha</ion-label>
+              <ion-input type="password" formControlName="senha" [clearInput]="true"
+                placeholder="Digite sua senha"></ion-input>
+
+              <ion-note slot="error" class="mensagemErro" no-lines
+                *ngIf='podeValidar && errorControlSenha.senha.errors?.required || errorControlSenha.senha.errors?.minlenth'>
+                A senha deve conter de 6-12 caracteres!
+              </ion-note>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Confirmar Senha</ion-label>
+              <ion-input type="password" formControlName="confirmarSenha" [clearInput]="true"
+                placeholder="Confirme sua senha"></ion-input>
+
+              <ion-note slot="error" class="mensagemErro" no-lines
+                *ngIf='podeValidar && errorControlSenha.confirmarSenha.errors?.notEqual'>
+                As senhas não coincidem!
+              </ion-note>
+            </ion-item>
+          </div>
+        </div>
+      </ion-list>
+
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="alterarSenha()" class="button" type="submit" expand="block">Salvar</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+</ion-content>

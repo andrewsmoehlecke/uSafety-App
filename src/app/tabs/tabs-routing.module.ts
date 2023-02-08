@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AlterarSenhaPage } from '../alterar-senha/alterar-senha.page';
 import { CriarTopicoPage } from '../criar-topico/criar-topico.page';
 import { DiscussaoPage } from '../discussao/discussao.page';
 import { DiscussoesPage } from '../discussoes/discussoes.page';
@@ -56,6 +57,10 @@ const routes: Routes = [
       {
         path: 'usuario',
         component: UsuarioPage
+      },
+      {
+        path: 'alterar-senha',
+        component: AlterarSenhaPage
       },
       {
         path: '',

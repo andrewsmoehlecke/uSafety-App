@@ -9,11 +9,17 @@ import { AlertController, NavController } from '@ionic/angular';
 })
 export class TabsPage {
 
+  admin: boolean = false;
+
   constructor(
     private storage: Storage,
     private navCtrl: NavController,
     private alertController: AlertController
-  ) { }
+  ) {
+    this.storage.get('isAdmin').then((admin) => {
+      this.admin = admin;
+    });
+  }
 
   async desconectarContaAlert() {
     let alert = await this.alertController.create({

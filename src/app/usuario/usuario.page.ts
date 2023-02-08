@@ -27,7 +27,8 @@ export class UsuarioPage implements OnInit {
     private apiService: ApiServiceService,
     private formBuilder: FormBuilder,
     private toastController: ToastController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private router: Router
   ) {
     this.usuario = JSON.parse(this.route.snapshot.paramMap.get('usuario') || '{}');
   }
@@ -86,6 +87,7 @@ export class UsuarioPage implements OnInit {
         next: (res) => {
           if (res.resposta == "usuarioAtualizado") {
             this.toast("Perfil atualizado com sucesso!");
+            this.navCtrl.navigateBack('/tabs/usuarios');
           }
         },
         error: (err) => {
@@ -116,7 +118,7 @@ export class UsuarioPage implements OnInit {
           if (res.resposta == "usuarioCriado") {
             this.toast("Usuário criado com sucesso!");
 
-            this.navCtrl.navigateRoot('/admin/usuarios');
+            this.navCtrl.navigateRoot('/tabs/usuarios');
           }
         },
         error: (err: any) => {
@@ -134,5 +136,9 @@ export class UsuarioPage implements OnInit {
     }).then((toast) => {
       toast.present();
     });
+  }
+
+  alterarSenha() {
+    this.router.navigate(['/tabs/alterar-senha', { id: this.usuario.id, from: 'usuario' }]);
   }
 }

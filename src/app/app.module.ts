@@ -11,6 +11,7 @@ import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { environment } from 'src/environments/environment';
+import { AlterarSenhaPage } from './alterar-senha/alterar-senha.page';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CriarTopicoPage } from './criar-topico/criar-topico.page';
@@ -55,6 +56,7 @@ export function provideSettings(storage: Storage) {
     TabsPage,
     UsuariosPage,
     UsuarioPage,
+    AlterarSenhaPage,
   ],
   imports: [
     ReactiveFormsModule,

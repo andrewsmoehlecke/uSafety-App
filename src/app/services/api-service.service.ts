@@ -238,6 +238,23 @@ export class ApiServiceService {
         })
       );
   }
+
+  alterarSenha(senha: AlterarSenhaDto, id: number) {
+    return this.http.put<RespostaSimplesDto>(this.url + "/usuario/alterarSenha/" + id, senha)
+      .pipe(
+        map((res) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
+}
+
+export interface AlterarSenhaDto {
+  senhaAtual: string;
+  novaSenha: string;
 }
 
 export interface RespostaSimplesDto {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ApiServiceService, Usuario } from '../services/api-service.service';
 
@@ -19,7 +20,8 @@ export class MeuPerfilPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private api: ApiServiceService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private router: Router
   ) {
     this.buscarPerfil();
   }
@@ -79,5 +81,9 @@ export class MeuPerfilPage implements OnInit {
     }).then(toast => {
       toast.present();
     });
+  }
+
+  alterarSenha() {
+    this.router.navigate(['/tabs/alterar-senha', { id: this.usuario.id, from: 'meu-perfil' }]);
   }
 }
