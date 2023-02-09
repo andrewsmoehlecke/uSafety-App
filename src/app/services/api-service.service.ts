@@ -250,6 +250,18 @@ export class ApiServiceService {
         })
       );
   }
+
+  adminAlterarSenhaDoUsuario(senha: AlterarSenhaDto, id: number) {
+    return this.http.put<RespostaSimplesDto>(this.url + "/admin/alterarSenhaDoUsuario/" + id, senha)
+      .pipe(
+        map((res) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
 }
 
 export interface AlterarSenhaDto {

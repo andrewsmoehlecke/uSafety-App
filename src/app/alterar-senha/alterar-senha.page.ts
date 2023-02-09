@@ -43,10 +43,17 @@ export class AlterarSenhaPage implements OnInit {
       return PasswordValidator.areEqual(formGroup);
     });
 
-    this.formSenha = this.formBuilder.group({
-      senhaAtual: ['', Validators.required],
-      novaSenha: this.verificacaoSenha,
-    });
+    if (this.paginaAnterior == "usuario") {
+      this.formSenha = this.formBuilder.group({
+        senhaAtual: ['', Validators.required],
+        novaSenha: this.verificacaoSenha,
+      });
+    } else {
+      this.formSenha = this.formBuilder.group({
+        senhaAtual: ['', Validators.required],
+        novaSenha: this.verificacaoSenha,
+      });
+    }
   }
 
   get errorControl() {
@@ -68,25 +75,40 @@ export class AlterarSenhaPage implements OnInit {
     this.podeValidar = true;
 
     if (this.formSenha.valid || this.paginaAnterior == "usuario") {
-
       let dto: AlterarSenhaDto = {
         senhaAtual: this.formSenha.value.senhaAtual,
         novaSenha: this.formSenha.value.novaSenha.senha
       }
 
-      this.api.alterarSenha(dto, this.idUsuario).subscribe({
-        next: (res) => {
-          if (res.resposta == "senhaAlterada") {
-            this.toast("Senha alterada com sucesso!");
-            this.navCtrl.navigateBack('/tabs/usuarios');
-          } else {
-            this.toast("Senha atual incorreta!");
+      if (this.paginaAnterior == "usuario") {
+        this.api.adminAlterarSenhaDoUsuario(dto, this.idUsuario).subscribe({
+          next: (res) => {
+            if (res.resposta == "senhaAlterada") {
+              this.toast("Senha alterada com sucesso!");
+              this.navCtrl.navigateBack('/tabs/usuarios');
+            } else {
+              this.toast("Senha atual incorreta!");
+            }
+          },
+          error: (err) => {
+            console.error(err);
           }
-        },
-        error: (err) => {
-          console.error(err);
-        }
-      });
+        });
+      } else {
+        this.api.alterarSenha(dto, this.idUsuario).subscribe({
+          next: (res) => {
+            if (res.resposta == "senhaAlterada") {
+              this.toast("Senha alterada com sucesso!");
+              this.navCtrl.navigateBack('/tabs/topicos');
+            } else {
+              this.toast("Senha atual incorreta!");
+            }
+          },
+          error: (err) => {
+            console.error(err);
+          }
+        });
+      }
     }
   }
 }
