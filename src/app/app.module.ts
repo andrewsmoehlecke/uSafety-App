@@ -57,6 +57,7 @@ export function provideSettings(storage: Storage) {
     UsuariosPage,
     UsuarioPage,
     AlterarSenhaPage,
+    
   ],
   imports: [
     ReactiveFormsModule,
