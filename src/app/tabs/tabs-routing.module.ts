@@ -7,6 +7,7 @@ import { DiscussoesPage } from '../discussoes/discussoes.page';
 import { DuvidaPage } from '../duvida/duvida.page';
 import { DuvidasPage } from '../duvidas/duvidas.page';
 import { MeuPerfilPage } from '../meu-perfil/meu-perfil.page';
+import { RecuperarAcessoPage } from '../recuperar-acesso/recuperar-acesso.page';
 import { TopicoPage } from '../topico/topico.page';
 import { TopicosPage } from '../topicos/topicos.page';
 import { UsuarioPage } from '../usuario/usuario.page';
@@ -61,6 +62,10 @@ const routes: Routes = [
       {
         path: 'alterar-senha',
         component: AlterarSenhaPage
+      },
+      {
+        path: 'recuperar-acesso',
+        component: RecuperarAcessoPage
       },
       {
         path: '',

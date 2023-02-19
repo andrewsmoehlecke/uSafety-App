@@ -21,6 +21,7 @@ import { DuvidaPage } from './duvida/duvida.page';
 import { DuvidasPage } from './duvidas/duvidas.page';
 import { InterceptorProvider } from './interceptor-ts/interceptor-ts';
 import { MeuPerfilPage } from './meu-perfil/meu-perfil.page';
+import { RecuperarAcessoPage } from './recuperar-acesso/recuperar-acesso.page';
 import { Settings } from './services/settings';
 import { TabsPage } from './tabs/tabs.page';
 import { TopicoPage } from './topico/topico.page';
@@ -57,7 +58,7 @@ export function provideSettings(storage: Storage) {
     UsuariosPage,
     UsuarioPage,
     AlterarSenhaPage,
-    
+    RecuperarAcessoPage,
   ],
   imports: [
     ReactiveFormsModule,

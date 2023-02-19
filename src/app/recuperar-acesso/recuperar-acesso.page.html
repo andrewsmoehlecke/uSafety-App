@@ -1,9 +1,64 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>recuperar-acesso</ion-title>
-  </ion-toolbar>
+  <ion-header class="header">
+    <ion-toolbar class="toolbar">
+      <ion-title>Recuperar acesso</ion-title>
+
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 </ion-header>
 
-<ion-content>
+<ion-content class="content">
+  <div class="recuperarAcesso">
+    <div class="titulo">
+      <h1>Enviar Código de Recuperação</h1>
+    </div>
 
+    <form class="form" [formGroup]="formCodRecuperacao">
+      <ion-list>
+        <div class="inputs">
+          <ion-item>
+            <ion-label position="floating">Código</ion-label>
+            <ion-input type="text" formControlName="username" [clearInput]="true" maxlength="10"
+              placeholder="Digite seu username"></ion-input>
+
+            <ion-note slot="error" class="mensagemErro" *ngIf='podeValidar && errorControl.username.errors?.required'>
+              Campo obrigatório!
+            </ion-note>
+          </ion-item>
+        </div>
+      </ion-list>
+
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="enviarCodRecuperao()" class="button" type="submit" expand="block">Enviar</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Código de Recuperação</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="recuperarAcesso()">Enviar</ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpen(false)">Fechar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
+            reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
+            dicta.
+          </p>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </div>
 </ion-content>

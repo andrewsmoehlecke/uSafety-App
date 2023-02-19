@@ -262,6 +262,30 @@ export class ApiServiceService {
         })
       );
   }
+
+  recuperarAcesso(usuario: string, codRecuperacao: string) {
+    return this.http.post<Token>(this.url + "/usuario/recuperarAcesso?usuario=" + usuario + "&codigo=" + codRecuperacao, null)
+      .pipe(
+        map((res) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
+
+  enviarCodRecuperao(usuario: string) {
+    return this.http.post<RespostaSimplesDto>(this.url + "/login/enviarCodRecuperao?usuario=" + usuario, null)
+      .pipe(
+        map((res) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
 }
 
 export interface AlterarSenhaDto {
