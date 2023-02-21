@@ -33,10 +33,6 @@ export class RecuperarAcessoPage implements OnInit {
 
   ngOnInit() { }
 
-  ionViewWillEnter() {
-    this.abrirModal();
-  }
-
   get errorControl() {
     return this.formRecuperarAcesso.controls;
   }
