@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { IonModal, ToastController } from '@ionic/angular';
 import { ApiServiceService } from '../services/api-service.service';
 
 @Component({
@@ -10,36 +11,45 @@ import { ApiServiceService } from '../services/api-service.service';
 })
 export class RecuperarAcessoPage implements OnInit {
 
-  formCodRecuperacao: FormGroup;
+  @ViewChild(IonModal) modal: IonModal;
+
+  formRecuperarAcesso: FormGroup;
   podeValidar = false;
 
   isModalOpen = false;
+
+  codigoRecuperacao: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private api: ApiServiceService,
     private toastCtrl: ToastController,
+    private router: Router,
   ) {
-    this.formCodRecuperacao = this.formBuilder.group({
+    this.formRecuperarAcesso = this.formBuilder.group({
       username: ['', Validators.required],
     });
   }
 
   ngOnInit() { }
 
+  ionViewWillEnter() {
+    this.abrirModal();
+  }
+
   get errorControl() {
-    return this.formCodRecuperacao.controls;
+    return this.formRecuperarAcesso.controls;
   }
 
   enviarCodRecuperao() {
     this.podeValidar = true;
 
-    if (this.formCodRecuperacao.valid) {
-      this.api.enviarCodRecuperao(this.formCodRecuperacao.value.username).subscribe({
+    if (this.formRecuperarAcesso.valid) {
+      this.api.enviarCodRecuperao(this.formRecuperarAcesso.value.username).subscribe({
         next: (res) => {
           if (res.resposta == "emailEnviado") {
             this.toast("Um código de recuperação foi enviado para o seu e-mail");
-            this.setOpen(true);
+            this.abrirModal();
           } else if ("erroAoEnviarEmail") {
             this.toast("Erro ao enviar código de recuperação");
           }
@@ -54,10 +64,24 @@ export class RecuperarAcessoPage implements OnInit {
   }
 
   recuperarAcesso() {
-  }
-
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
+    if (this.codigoRecuperacao != "") {
+      this.api.recuperarAcesso(this.formRecuperarAcesso.value.username, this.codigoRecuperacao).subscribe({
+        next: (res) => {
+          if (res != undefined) {
+            this.fecharModal();
+            this.router.navigate(['/tabs/topicos']);
+          } else {
+            this.toast("Código de recuperação inválido.");
+          }
+        },
+        error: (err) => {
+          this.toast("Erro ao enviar código de recuperação");
+          console.error(err);
+        }
+      });
+    } else {
+      this.toast("Insira o código de recuperação.");
+    }
   }
 
   toast(msg: string) {
@@ -69,4 +93,11 @@ export class RecuperarAcessoPage implements OnInit {
     });
   }
 
+  fecharModal() {
+    this.modal.dismiss();
+  }
+
+  abrirModal() {
+    this.modal.present();
+  }
 }

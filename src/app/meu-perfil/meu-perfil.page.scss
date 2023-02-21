@@ -20,6 +20,7 @@
         ion-item {
             color: $branco;
             --background: transparent;
+            --border-color: $branco;
         }
 
         .form {
@@ -29,6 +30,7 @@
 
                     .imagem {
                         margin: 0 auto;
+                        --border-color: transparent;
 
                         ion-avatar {
                             width: 5em;

@@ -36,6 +36,9 @@ ion-content {
             }
 
             .inputs {
+                ion-item {
+                    --border-color: $branco;
+                }
 
                 ion-item::part(native) {
                     color: $branco;

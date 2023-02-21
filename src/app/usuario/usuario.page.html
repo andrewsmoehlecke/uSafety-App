@@ -101,7 +101,7 @@
         </ion-col>
       </ion-row>
 
-      <div class="linkAlterarSenha">
+      <div class="linkAlterarSenha" *ngIf="readOnly">
         <ion-button (click)="alterarSenha()">Alterar senha</ion-button>
       </div>
     </form>

@@ -1,0 +1,78 @@
+@import '/src/theme/variables.scss';
+
+.content {
+    .recuperarAcesso {
+        background-color: $azul-marinho;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 90%;
+        height: fit-content;
+        border-radius: $border-radius-container;
+
+        .titulo {
+            padding: 2em 1em 1em;
+            text-align: center;
+            color: $branco;
+
+            h1 {
+                margin: 0;
+            }
+        }
+
+        ion-item {
+            color: $branco;
+            --background: transparent;
+            --border-color: $branco;
+        }
+
+        .form {
+            .lista {
+                background: transparent;
+
+                .inputs {
+                    padding: 1em;
+                }
+            }
+
+            .button {
+                margin: 1em auto;
+                --background: #fdfdfd;
+                color: $azul;
+                width: 90%;
+                border-radius: 1rem;
+            }
+        }
+    }
+}
+
+ion-modal {
+    --width: 90%;
+    --height: 60%;
+    --border-radius: 1em;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    .conteudo {
+        text-align: center;
+        --background: #084670d6;
+        --color: $branco;
+
+        .titulo {
+            font-size: 1.5em;
+            margin-bottom: 1.6em;
+        }
+    }
+
+    ion-item.item-has-focus>ion-label {
+        color: $branco;
+    }
+
+    ion-item {
+        color: $branco;
+        --background: transparent;
+        --border-color: $branco;
+    }
+}

@@ -15,7 +15,9 @@ export class TabsPage {
     private storage: Storage,
     private navCtrl: NavController,
     private alertController: AlertController
-  ) {
+  ) { }
+
+  ionViewWillEnter() {
     this.storage.get('isAdmin').then((admin) => {
       this.admin = admin;
     });

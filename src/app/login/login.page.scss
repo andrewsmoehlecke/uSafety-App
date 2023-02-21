@@ -36,6 +36,9 @@ ion-content {
             }
 
             .inputs {
+                ion-item {
+                    --border-color: $branco;
+                }
 
                 ion-item::part(native) {
                     color: $branco;
@@ -66,7 +69,12 @@ ion-content {
 
             p {
                 margin: 0 0 1em 0;
+
+                a {
+                    color: $branco-azulado;
+                }
             }
+
         }
 
     }

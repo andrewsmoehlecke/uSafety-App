@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RecuperarAcessoPage } from './recuperar-acesso/recuperar-acesso.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },
-  {
     path: '',
     loadChildren: () => import('./bem-vindo/bem-vindo.module').then(m => m.BemVindoPageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
     path: 'cadastro',
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'recuperar-acesso',
+    component: RecuperarAcessoPage
   },
 ];
 @NgModule({

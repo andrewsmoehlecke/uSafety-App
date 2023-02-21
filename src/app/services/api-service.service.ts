@@ -264,10 +264,25 @@ export class ApiServiceService {
   }
 
   recuperarAcesso(usuario: string, codRecuperacao: string) {
-    return this.http.post<Token>(this.url + "/usuario/recuperarAcesso?usuario=" + usuario + "&codigo=" + codRecuperacao, null)
+    return this.http.post<Token>(this.url + "/login/recuperarAcesso?usuario=" + usuario + "&codigo=" + codRecuperacao, null)
       .pipe(
-        map((res) => {
-          return res;
+        map((res: Token) => {
+          if (res.token != undefined) {
+            console.log(res)
+
+            this.storage.set('token', res.token);
+
+            // @ts-ignore: Object is possibly 'null'.
+            let tokenInfo = JSON.parse(atob(res.token.match(/\..*\./)[0].replace(/\./g, '')));
+
+            this.storage.set('token_expiration', tokenInfo.exp);
+            this.storage.set('isAdmin', res.admin);
+            this.storage.set('username', res.username);
+
+            return res.token;
+          } else {
+            return res.error;
+          }
         }),
         catchError((err: HttpErrorResponse) => {
           return throwError(() => err)

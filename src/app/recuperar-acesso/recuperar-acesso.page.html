@@ -16,13 +16,13 @@
       <h1>Enviar Código de Recuperação</h1>
     </div>
 
-    <form class="form" [formGroup]="formCodRecuperacao">
-      <ion-list>
+    <form class="form" [formGroup]="formRecuperarAcesso">
+      <ion-list class="lista">
         <div class="inputs">
           <ion-item>
-            <ion-label position="floating">Código</ion-label>
+            <ion-label position="floating">Usuário</ion-label>
             <ion-input type="text" formControlName="username" [clearInput]="true" maxlength="10"
-              placeholder="Digite seu username"></ion-input>
+              placeholder="Digite seu usuário"></ion-input>
 
             <ion-note slot="error" class="mensagemErro" *ngIf='podeValidar && errorControl.username.errors?.required'>
               Campo obrigatório!
@@ -38,25 +38,26 @@
       </ion-row>
     </form>
 
-    <ion-modal [isOpen]="isModalOpen">
+    <ion-modal class="modal" [backdropDismiss]="false">
       <ng-template>
-        <ion-header>
-          <ion-toolbar>
-            <ion-title>Código de Recuperação</ion-title>
-            <ion-buttons slot="end">
+        <ion-header class="header">
+          <ion-toolbar class="toolbar">
+            <ion-buttons slot="start">
               <ion-button (click)="recuperarAcesso()">Enviar</ion-button>
             </ion-buttons>
             <ion-buttons slot="end">
-              <ion-button (click)="setOpen(false)">Fechar</ion-button>
+              <ion-button (click)="fecharModal()">Fechar</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        <ion-content class="ion-padding">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
-            reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
-            dicta.
-          </p>
+        <ion-content class="ion-padding conteudo">
+          <div class="titulo">
+            <h1>Insira seu código de recuperação</h1>
+          </div>
+          <ion-item>
+            <ion-label position="floating">Código</ion-label>
+            <ion-input type="text" placeholder="Seu código" [(ngModel)]="codigoRecuperacao"></ion-input>
+          </ion-item>
         </ion-content>
       </ng-template>
     </ion-modal>
