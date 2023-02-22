@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController, ToastController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { PasswordValidator } from 'src/util/validar-senha';
 import { ApiServiceService, RespostaSimplesDto, Usuario } from '../services/api-service.service';
 
@@ -28,7 +28,8 @@ export class UsuarioPage implements OnInit {
     private formBuilder: FormBuilder,
     private toastController: ToastController,
     private navCtrl: NavController,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController,
   ) {
     this.usuario = JSON.parse(this.route.snapshot.paramMap.get('usuario') || '{}');
   }
@@ -109,7 +110,8 @@ export class UsuarioPage implements OnInit {
         email: this.formUsuario.value.email,
         dataNascimento: this.formUsuario.value.dataNascimento,
         senha: this.formUsuario.value.senha.senha,
-        fotoPerfil: this.formUsuario.value.fotoPerfil
+        fotoPerfil: this.formUsuario.value.fotoPerfil,
+        ativo: true
       };
 
       this.apiService.adminCriarUsuario(usuario).subscribe({
@@ -140,5 +142,71 @@ export class UsuarioPage implements OnInit {
 
   alterarSenha() {
     this.router.navigate(['/tabs/alterar-senha', { id: this.usuario.id, from: 'usuario' }]);
+  }
+
+  alterarStatusUsuario() {
+    if (this.usuario.ativo) {
+      this.alertAlterarStatusUsuario("Desabilitar usuário", "Deseja desabilitar o usuário " + this.usuario.username + "?");
+    } else {
+      this.alertAlterarStatusUsuario("Habilitar usuário", "Deseja habilitar o usuário " + this.usuario.username + "?");
+    }
+  }
+
+  alertAlterarStatusUsuario(titulo: string, mensagem: string) {
+    this.alertController.create({
+      header: titulo,
+      message: mensagem,
+      backdropDismiss: true,
+      cssClass: "alerta-alterar-status-usuario",
+      buttons: [
+        {
+          text: "Sim",
+          cssClass: "btn-sim",
+          handler: () => {
+            if (this.usuario.ativo) {
+              this.desabilitarUsuario();
+            } else {
+              this.habilitarUsuario();
+            }
+          }
+        },
+        {
+          text: "Cancelar",
+          cssClass: "btn-cancelar",
+        }
+      ]
+    }).then(alert => {
+      alert.present();
+    });
+  }
+
+  desabilitarUsuario() {
+    this.apiService.adminDesabilitarUsuario(this.usuario.id).subscribe({
+      next: (res: RespostaSimplesDto) => {
+        if (res.resposta == "usuarioDesabilitado") {
+          this.toast("Usuário desabilitado com sucesso!");
+          this.navCtrl.navigateRoot('/tabs/usuarios');
+        }
+      },
+      error: (err: any) => {
+        this.toast("Erro ao desabilitar usuário!");
+        console.error(err);
+      }
+    });
+  }
+
+  habilitarUsuario() {
+    this.apiService.adminHabilitarUsuario(this.usuario.id).subscribe({
+      next: (res: RespostaSimplesDto) => {
+        if (res.resposta == "usuarioHabilitado") {
+          this.toast("Usuário habilitado com sucesso!");
+          this.navCtrl.navigateRoot('/tabs/usuarios');
+        }
+      },
+      error: (err: any) => {
+        this.toast("Erro ao habilitar usuário!");
+        console.error(err);
+      }
+    });
   }
 }

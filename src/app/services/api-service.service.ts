@@ -301,6 +301,30 @@ export class ApiServiceService {
         })
       );
   }
+
+  adminDesabilitarUsuario(id: number) {
+    return this.http.put<RespostaSimplesDto>(this.url + "/admin/desabilitarUsuario/" + id, null)
+      .pipe(
+        map((res) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
+
+  adminHabilitarUsuario(id: number) {
+    return this.http.put<RespostaSimplesDto>(this.url + "/admin/habilitarUsuario/" + id, null)
+      .pipe(
+        map((res) => {
+          return res;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err)
+        })
+      );
+  }
 }
 
 export interface AlterarSenhaDto {
@@ -355,4 +379,5 @@ export interface Usuario {
   dataNascimento: string;
   senha: string;
   fotoPerfil?: string;
+  ativo: boolean;
 }

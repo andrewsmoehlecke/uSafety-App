@@ -27,6 +27,12 @@
                 <img class="fotoPerfil" *ngIf="u.fotoPerfil == null" src="../../assets/img/avatar.svg" />
               </ion-avatar>
               <ion-label class="nomeUsuario">{{ u.username }} / {{ u.nomeCompleto }}</ion-label>
+
+              <div class="statusUsuario">
+                <ion-icon name="eye-outline" *ngIf="u.ativo"></ion-icon>
+
+                <ion-icon name="eye-off-outline" *ngIf="!u.ativo"></ion-icon>
+              </div>
             </ion-chip>
           </div>
         </div>

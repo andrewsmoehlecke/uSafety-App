@@ -59,7 +59,8 @@ export class CadastroPage implements OnInit {
         nomeCompleto: this.formUsuario.value.nome,
         email: this.formUsuario.value.email,
         dataNascimento: this.formUsuario.value.nascimento,
-        senha: this.formUsuario.value.senhas.senha
+        senha: this.formUsuario.value.senhas.senha,
+        ativo: true,
       }
 
       this.api.cadastrarUsuario(usuario).subscribe({

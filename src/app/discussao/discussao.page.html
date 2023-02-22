@@ -12,7 +12,6 @@
   <div class="margin-top">
     <ion-item class="discussao">
       <div class="padding">
-
         <div class="header">
           <div class="avatar">
             <ion-chip class="ion-chip">
@@ -42,7 +41,6 @@
           <p>{{ discussao.conteudo }}</p>
         </div>
 
-
         <div class="info">
           <p class="horaPublicacao">{{ discussao.horaPublicacao | date: 'short' }}</p>
         </div>
@@ -64,11 +62,11 @@
   </div>
 
   <ion-list class="lista" *ngIf="comentarios.length > 0">
-    <div class="titulo">
-      <h2>Comentários</h2>
-    </div>
-
     <div *ngFor="let c of comentarios">
+      <div class="titulo">
+        <h2>Comentários</h2>
+      </div>
+
       <ion-item class="comentario" *ngIf="c.visivel || podeExcluir">
         <div class="padding">
           <div class="header">

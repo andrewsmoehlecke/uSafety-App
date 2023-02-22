@@ -6,6 +6,10 @@
 
 .conteudo {
     .lista {
+        ion-item {
+            --border-color: transparent;
+        }
+
         .usuario {
             width: 100%;
             margin: 0.5em 0;
@@ -17,14 +21,27 @@
 
                 .header {
                     .avatar {
+
                         .ion-chip {
                             background-color: transparent;
                             color: $branco;
                             height: 4em;
+                            width: 100%;
 
                             .ion-avatar {
                                 width: 3em;
                                 height: 3em;
+                            }
+
+                            .statusUsuario {
+                                width: fit-content;
+                                height: fit-content;
+                                position: absolute;
+                                right: 2em;
+
+                                ion-icon {
+                                    font-size: 20px;
+                                }
                             }
                         }
                     }

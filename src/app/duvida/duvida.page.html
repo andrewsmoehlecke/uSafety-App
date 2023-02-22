@@ -64,11 +64,11 @@
   </div>
 
   <ion-list class="lista">
-    <div class="titulo">
-      <h2>Comentários</h2>
-    </div>
-
     <div *ngFor="let c of comentarios">
+      <div class="titulo">
+        <h2>Comentários</h2>
+      </div>
+
       <ion-item class="comentario" *ngIf="c.visivel || podeExcluir">
         <div class="padding">
           <div class="header">
