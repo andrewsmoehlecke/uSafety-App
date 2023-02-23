@@ -30,7 +30,7 @@ export class InterceptorProvider implements HttpInterceptor {
           return next.handle(clonedReq).pipe(
             catchError(error => {
               console.error("STATUS " + error.status)
-              if (error.status == 440 || error.status == 401) {
+              if (error.status == 440) {
                 console.warn("Token expirado!");
 
                 this.toastTokenExpirado();

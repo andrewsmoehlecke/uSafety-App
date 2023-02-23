@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
-import { Storage } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
-import { ToastController } from '@ionic/angular';
 import { ApiServiceService } from '../services/api-service.service';
 
 @Component({
@@ -23,7 +19,6 @@ export class CriarTopicoPage implements OnInit {
     private api: ApiServiceService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private imagePicker: ImagePicker,
   ) {
     this.tipoTopico = String(this.route.snapshot.paramMap.get('tipo'));
 

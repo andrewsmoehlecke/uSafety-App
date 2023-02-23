@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { ApiServiceService, Login } from '../services/api-service.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
     private api: ApiServiceService,
     private formBuilder: FormBuilder,
     private navCtrl: NavController,
-
+    private toastCtrl: ToastController,
   ) {
     this.formLogin = this.formBuilder.group({
       username: ['', Validators.required],
@@ -46,9 +46,18 @@ export class LoginPage implements OnInit {
           this.navCtrl.navigateForward("/tabs/topicos");
         },
         error: (err) => {
-          console.error(err);
+          if (err.error == "usernameOuSenhaIncorreta" || err.status == 401) {
+            this.toast("Usuário ou senha incorretos!");
+          }
         }
       });
     }
+  }
+
+  toast(msg: string) {
+    this.toastCtrl.create({
+      message: msg,
+      duration: 2000,
+    }).then(toast => toast.present());
   }
 }
