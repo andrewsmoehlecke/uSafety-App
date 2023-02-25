@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
           this.navCtrl.navigateForward("/tabs/topicos");
         },
         error: (err) => {
-          if (err.error == "usernameOuSenhaIncorreta" || err.status == 401) {
+          if (err.error == "usernameOuSenhaIncorreta" || err.status == 401 || err.status == 403) {
             this.toast("Usuário ou senha incorretos!");
           }
         }

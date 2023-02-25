@@ -11,6 +11,11 @@
 <ion-content class="conteudo">
   <form class="form" [formGroup]="form">
     <ion-list>
+      <div class="imagem">
+        <img src="../../assets/img/no-image.png">
+
+        <img [src]="form.value.imagem">
+      </div>
 
       <ion-item>
         <ion-label position="floating">Imagem</ion-label>

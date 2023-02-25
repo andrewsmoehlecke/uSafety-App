@@ -7,7 +7,7 @@
         margin: 2em 1em;
         position: relative;
         top: 50%;
-        transform: translateY(-80%);
+        transform: translateY(-60%);
 
         ion-label,
         ion-input,
@@ -20,20 +20,10 @@
             max-height: 60vh;
             margin: 0 auto;
             text-align: center;
+            --border-color: transparent;
 
             img {
                 border-radius: 1em;
-            }
-
-            ion-icon {
-                position: absolute;
-                bottom: 0;
-                right: 0.5em;
-                background: $azul;
-                color: $branco;
-                padding: 0.3em;
-                border-radius: 1em;
-                font-size: 1.8em;
             }
         }
 
